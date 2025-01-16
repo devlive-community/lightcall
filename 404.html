@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - LightCall</title>
+    <link rel="icon" href="../..//favicon.ico" type="image/x-icon">
+
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="/assets/pageforge.min.css">
+
+    <script>
+        (function () {
+            document.addEventListener('click', function (e) {
+                var link = e.target.closest('a');
+                if (!link) return;
+
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('http') || href.startsWith('#')) return;
+
+                e.preventDefault();
+
+                // 获取目标语言
+                const targetLang = href.split('/')[1];
+
+                fetch(href)
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = href;
+                        }
+                        else {
+                            window.location.href = `/${targetLang}/404.html`;
+                        }
+                    })
+                    .catch(() => {
+                        window.location.href = `/${targetLang}/404.html`;
+                    });
+            });
+        })();
+    </script>
+
+    <!-- 加载主题配置中的额外 CSS 文件 -->
+    
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<div class="flex flex-col min-h-screen">
+    
+        
+
+<header>
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b z-40">
+        <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center justify-between flex-1 lg:flex-none">
+                    <div class="flex items-center space-x-4 shrink-0">
+                        
+                        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+                            LightCall
+                        </a>
+                    </div>
+
+                    <!-- 移动端菜单按钮 -->
+                    <button type="button"
+                            class="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700"
+                            onclick="document.getElementById('mobile-menu').classList.toggle('hidden');
+                                     this.querySelector('svg:first-child').classList.toggle('hidden');
+                                     this.querySelector('svg:last-child').classList.toggle('hidden');">
+                        <!-- 菜单图标 -->
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        <!-- 关闭图标 -->
+                        <svg class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 桌面端导航 -->
+                <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
+                    
+                        <li class="shrink-0">
+                            <a href="/usage/get.html"
+                               class="inline-flex items-center rounded-lg justify-center px-4 py-3
+                                      text-sm font-medium leading-none dark:text-white
+                                      hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40">
+                                文档
+                            </a>
+                        </li>
+                    
+                </ul>
+
+                <!-- 语言切换器 -->
+                
+
+                <!-- 仓库链接 -->
+                <div class="hidden lg:block">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div class="hidden lg:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-2 border-t dark:border-gray-700">
+                
+                    <a href="/usage/get.html"
+                       class="block px-3 py-2 rounded-md text-base font-medium
+                              text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                        文档
+                    </a>
+                
+
+                <!-- 移动端语言切换 -->
+                
+
+                <!-- 移动端的仓库链接 -->
+                <div class="px-3 py-2 border-t dark:border-gray-700">
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // 点击外部区域关闭移动端菜单
+    document.addEventListener('click', function (event) {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuButton = document.querySelector('button[onclick*="mobile-menu"]');
+
+        if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            menuButton.querySelector('svg:first-child').classList.remove('hidden');
+            menuButton.querySelector('svg:last-child').classList.add('hidden');
+        }
+    });
+</script>
+    
+
+    <!-- 移动端菜单按钮 -->
+    
+
+    <div class="container mx-auto px-4 py-4 md:py-8 flex-grow flex flex-col md:flex-row pt-16">
+        <!-- 左侧列表 - 移动端隐藏，可通过菜单触发显示 -->
+        
+
+        <!-- 中间内容 -->
+        <main class="flex-grow w-full mt-4 md:w-2 md:mt-12">
+            <article class="prose dark:prose-invert lg:prose-lg mx-auto
+                          max-w-none md:max-w-2xl lg:max-w-full">
+                <div class="w-full h-[calc(100vh-30rem)] flex items-center justify-center px-4">
+    <div class="max-w-md w-full space-y-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">页面未找到</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">抱歉，您访问的页面不存在。</p>
+            <a id="homeLink"
+               href="/"
+               class="inline-flex items-center px-4 py-2 border border-transparent
+                      text-base font-medium rounded-md text-white
+                      bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                返回首页
+            </a>
+        </div>
+    </div>
+</div>
+            </article>
+        </main>
+
+        <!-- 右侧目录 -->
+        
+    </div>
+
+    
+        <footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="flex flex-col md:flex-row md:justify-between gap-8">
+            <!-- Logo 和描述部分 -->
+            <div class="md:w-1/3">
+                
+
+                <div class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                    LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。
+                </div>
+            </div>
+
+            <!-- 链接部分 -->
+            
+        </div>
+
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"/>
+
+        <!-- 底部版权和社交链接 -->
+        <div class="flex flex-col items-center sm:flex-row sm:items-center justify-between gap-4">
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+                 使用 ❤️ PageForge 构建
+            </span>
+
+            
+        </div>
+    </div>
+</footer>
+    
+</div>
+
+<!-- 遮罩层 - 移动端菜单打开时显示 -->
+
+</body>
+
+<!-- 基础脚本文件 -->
+<script src="/assets/pageforge.min.js"></script>
+
+<script>
+    // 移动端侧边栏打开时显示遮罩
+    document.querySelector('[onclick*="sidebar-menu"]').addEventListener('click', function () {
+        document.getElementById('sidebar-overlay').classList.remove('hidden');
+    });
+</script>
+
+<!-- 加载主题配置中的额外 JS 文件 -->
+
+
+<!-- 是否启用 Lucide 图标库 -->
+
+</html>
