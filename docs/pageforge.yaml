@@ -2,6 +2,26 @@ site:
   title: LightCall
   description: LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。
 
+repo:
+  owner: devlive-community
+  name: lightcall
+  url: https://github.com/devlive-community/lightcall
+
+footer:
+  copyright: © 2024 PageForge All Rights Reserved.
+  social:
+    github:
+      title: GitHub
+      href: https://github.com/devlive-community/lightcall
+  links:
+    - 开源项目:
+      - title: 开源数据中台
+        href: https://github.com/devlive-community/datacap
+      - title: 开源 UI 框架
+        href: https://github.com/devlive-community/view-shadcn-ui
+      - title: 开源网站构建工具
+        href: https://github.com/devlive-community/pageforge
+
 nav:
   - 文档:
     - /usage/header
