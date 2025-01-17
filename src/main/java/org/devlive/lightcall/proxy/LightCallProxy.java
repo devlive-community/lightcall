@@ -2,23 +2,19 @@ package org.devlive.lightcall.proxy;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.devlive.lightcall.RequestContext;
-import org.devlive.lightcall.RequestException;
-import org.devlive.lightcall.annotation.Get;
 import org.devlive.lightcall.config.LightCallConfig;
-import org.devlive.lightcall.handler.ParameterHandler;
-import org.devlive.lightcall.handler.ParameterHandlerFactory;
-import org.devlive.lightcall.interceptor.Interceptor;
+import org.devlive.lightcall.processor.GetProcessor;
+import org.devlive.lightcall.processor.MethodProcessor;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -29,6 +25,7 @@ public class LightCallProxy
     private final OkHttpClient client;
     private final LightCallConfig config;
     private final ObjectMapper objectMapper;
+    private final Map<Class<? extends Annotation>, MethodProcessor<?>> processors;
 
     public LightCallProxy(LightCallConfig config)
     {
@@ -39,14 +36,20 @@ public class LightCallProxy
                 .readTimeout(config.getReadTimeout(), TimeUnit.MILLISECONDS)
                 .build();
         this.objectMapper = new ObjectMapper();
+        this.processors = new HashMap<>();
+
+        // 注册默认的 GET 处理器
+        registerProcessor(new GetProcessor(client, objectMapper, config.getInterceptors()));
+    }
+
+    public <A extends Annotation> void registerProcessor(MethodProcessor<A> processor)
+    {
+        processors.put(processor.getAnnotationType(), processor);
+        log.debug("Registered processor for annotation: {}", processor.getAnnotationType().getSimpleName());
     }
 
     @Override
-    public Object invoke(
-            Object proxy,
-            Method method,
-            Object[] args
-    )
+    public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable
     {
         log.debug("Invoking method: {}.{}({})",
@@ -59,114 +62,34 @@ public class LightCallProxy
             return method.invoke(this, args);
         }
 
-        Get getAnnotation = method.getAnnotation(Get.class);
-        if (getAnnotation != null) {
-            log.debug("Processing @Get annotation with value: {}", getAnnotation.value());
-
-            // 创建请求上下文
-            RequestContext context = RequestContext.create(config.getBaseUrl());
-
-            // 构建 URL 和处理 headers
-            HttpUrl url = buildUrl(getAnnotation.value(), method, args, context);
-
-            return executeGet(url, method.getReturnType(), context);
+        // 查找方法上的所有注解
+        for (Annotation annotation : method.getAnnotations()) {
+            MethodProcessor<?> processor = processors.get(annotation.annotationType());
+            if (processor != null) {
+                // 创建请求上下文
+                RequestContext context = RequestContext.create(config.getBaseUrl());
+                return invokeProcessor(processor, proxy, method, args, annotation, context);
+            }
         }
 
         throw new UnsupportedOperationException(
-                String.format("Method %s is not annotated with @Get", method.getName()));
+                String.format("Method %s has no registered processor for its annotations", method.getName()));
     }
 
-    private HttpUrl buildUrl(
-            String path,
+    @SuppressWarnings("unchecked")
+    private <A extends Annotation> Object invokeProcessor(
+            MethodProcessor<?> processor,
+            Object proxy,
             Method method,
             Object[] args,
-            RequestContext context
-    )
+            Annotation annotation,
+            RequestContext context)
+            throws Throwable
     {
-        log.debug("Building URL for path: {} with args: {}", path, Arrays.toString(args));
-
-        // 获取参数处理器
-        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(method, context);
-
-        // 处理参数
-        Parameter[] parameters = method.getParameters();
-        String processedPath = path;
-
-        // 处理参数级注解
-        for (int i = 0; i < parameters.length; i++) {
-            Parameter parameter = parameters[i];
-            Object arg = args[i];
-
-            for (ParameterHandler handler : handlers) {
-                if (handler.canHandle(parameter)) {
-                    processedPath = handler.handle(parameter, arg, processedPath);
-                    break;
-                }
-            }
-        }
-
-        // 添加处理后的路径
-        if (!processedPath.startsWith("/")) {
-            processedPath = "/" + processedPath;
-        }
-        context.getUrlBuilder().addPathSegments(processedPath.substring(1));
-
-        HttpUrl url = context.getUrlBuilder().build();
-        log.debug("Built URL: {}", url);
-        return url;
+        return ((MethodProcessor<A>) processor).process(proxy, method, args, (A) annotation, context);
     }
 
-    private <T> T executeGet(
-            HttpUrl url,
-            Class<T> returnType,
-            RequestContext context
-    )
-            throws Exception
-    {
-        log.info("Executing GET request - URL: {}, Expected return type: {}", url, returnType);
-
-        Request originalRequest = context.getRequestBuilder()
-                .url(url)
-                .get()
-                .build();
-
-        // 执行请求前拦截器
-        Request request = applyBeforeRequestInterceptors(originalRequest);
-        log.info("Executing request - URL: {}, Headers: {}", request.url(), request.headers());
-
-        long startTime = System.currentTimeMillis();
-        try {
-            Response response = client.newCall(request).execute();
-            long duration = System.currentTimeMillis() - startTime;
-            log.debug("Received response in {}ms - Status code: {}", duration, response.code());
-
-            // 执行响应后拦截器
-            response = applyAfterResponseInterceptors(response);
-
-            if (!response.isSuccessful()) {
-                throw new RequestException("Request failed with code: " + response.code());
-            }
-
-            if (response.body() == null) {
-                log.warn("Response body is null for URL: {}", url);
-                return null;
-            }
-
-            String responseBody = response.body().string();
-            response.close();
-
-            return objectMapper.readValue(responseBody, returnType);
-        }
-        catch (Exception e) {
-            log.error("Error executing request: {}", e.getMessage(), e);
-            throw e;
-        }
-    }
-
-    private String formatMethodArgs(
-            Method method,
-            Object[] args
-    )
+    private String formatMethodArgs(Method method, Object[] args)
     {
         if (args == null || args.length == 0) {
             return "";
@@ -177,39 +100,5 @@ public class LightCallProxy
                         param.getName(),
                         args[Arrays.asList(parameters).indexOf(param)]))
                 .collect(Collectors.joining(", "));
-    }
-
-    private Request applyBeforeRequestInterceptors(Request request)
-    {
-        Request interceptedRequest = request;
-        for (Interceptor interceptor : config.getInterceptors()) {
-            try {
-                interceptedRequest = interceptor.beforeRequest(interceptedRequest);
-                log.debug("Applied beforeRequest interceptor: {}", interceptor.getClass().getSimpleName());
-            }
-            catch (Exception e) {
-                log.error("Error in beforeRequest interceptor {}: {}",
-                        interceptor.getClass().getSimpleName(), e.getMessage(), e);
-            }
-        }
-        return interceptedRequest;
-    }
-
-    private Response applyAfterResponseInterceptors(Response response)
-            throws Exception
-    {
-        Response interceptedResponse = response;
-        for (Interceptor interceptor : config.getInterceptors()) {
-            try {
-                interceptedResponse = interceptor.afterResponse(interceptedResponse);
-                log.debug("Applied afterResponse interceptor: {}", interceptor.getClass().getSimpleName());
-            }
-            catch (Exception e) {
-                log.error("Error in afterResponse interceptor {}: {}",
-                        interceptor.getClass().getSimpleName(), e.getMessage(), e);
-                throw e;
-            }
-        }
-        return interceptedResponse;
     }
 }
