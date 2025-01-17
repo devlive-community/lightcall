@@ -85,7 +85,7 @@ public class LightCallProxy
         log.debug("Building URL for path: {} with args: {}", path, Arrays.toString(args));
 
         // 获取参数处理器
-        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(context);
+        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(method, context);
 
         // 处理参数
         Parameter[] parameters = method.getParameters();

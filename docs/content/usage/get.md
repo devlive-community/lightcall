@@ -71,3 +71,9 @@ Post getPost(@PathVariable("id") Long id);
 ```
 /posts/1
 ```
+
+!!! danger "注意"
+
+    如果需要传递 HTTP Header，需要使用 `@Header` 或 `@Headers` 注解。请参考 [Header](/usage/header.html)。
+
+!!!
