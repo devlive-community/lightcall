@@ -28,5 +28,6 @@ nav:
   - 开始使用:
     - /getting-started/get-started
   - 文档:
+    - /usage/interceptor
     - /usage/header
     - /usage/get

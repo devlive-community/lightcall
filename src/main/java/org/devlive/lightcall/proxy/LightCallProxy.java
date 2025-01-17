@@ -12,6 +12,7 @@ import org.devlive.lightcall.annotation.Get;
 import org.devlive.lightcall.config.LightCallConfig;
 import org.devlive.lightcall.handler.ParameterHandler;
 import org.devlive.lightcall.handler.ParameterHandlerFactory;
+import org.devlive.lightcall.interceptor.Interceptor;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -124,16 +125,23 @@ public class LightCallProxy
     {
         log.info("Executing GET request - URL: {}, Expected return type: {}", url, returnType);
 
-        Request request = context.getRequestBuilder()
+        Request originalRequest = context.getRequestBuilder()
                 .url(url)
                 .get()
                 .build();
-        log.info("Executing request - URL: {}, Headers: {}", url, request.headers());
+
+        // 执行请求前拦截器
+        Request request = applyBeforeRequestInterceptors(originalRequest);
+        log.info("Executing request - URL: {}, Headers: {}", request.url(), request.headers());
 
         long startTime = System.currentTimeMillis();
-        try (Response response = client.newCall(request).execute()) {
+        try {
+            Response response = client.newCall(request).execute();
             long duration = System.currentTimeMillis() - startTime;
             log.debug("Received response in {}ms - Status code: {}", duration, response.code());
+
+            // 执行响应后拦截器
+            response = applyAfterResponseInterceptors(response);
 
             if (!response.isSuccessful()) {
                 throw new RequestException("Request failed with code: " + response.code());
@@ -145,8 +153,13 @@ public class LightCallProxy
             }
 
             String responseBody = response.body().string();
+            response.close();
 
             return objectMapper.readValue(responseBody, returnType);
+        }
+        catch (Exception e) {
+            log.error("Error executing request: {}", e.getMessage(), e);
+            throw e;
         }
     }
 
@@ -164,5 +177,39 @@ public class LightCallProxy
                         param.getName(),
                         args[Arrays.asList(parameters).indexOf(param)]))
                 .collect(Collectors.joining(", "));
+    }
+
+    private Request applyBeforeRequestInterceptors(Request request)
+    {
+        Request interceptedRequest = request;
+        for (Interceptor interceptor : config.getInterceptors()) {
+            try {
+                interceptedRequest = interceptor.beforeRequest(interceptedRequest);
+                log.debug("Applied beforeRequest interceptor: {}", interceptor.getClass().getSimpleName());
+            }
+            catch (Exception e) {
+                log.error("Error in beforeRequest interceptor {}: {}",
+                        interceptor.getClass().getSimpleName(), e.getMessage(), e);
+            }
+        }
+        return interceptedRequest;
+    }
+
+    private Response applyAfterResponseInterceptors(Response response)
+            throws Exception
+    {
+        Response interceptedResponse = response;
+        for (Interceptor interceptor : config.getInterceptors()) {
+            try {
+                interceptedResponse = interceptor.afterResponse(interceptedResponse);
+                log.debug("Applied afterResponse interceptor: {}", interceptor.getClass().getSimpleName());
+            }
+            catch (Exception e) {
+                log.error("Error in afterResponse interceptor {}: {}",
+                        interceptor.getClass().getSimpleName(), e.getMessage(), e);
+                throw e;
+            }
+        }
+        return interceptedResponse;
     }
 }

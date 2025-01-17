@@ -1,6 +1,10 @@
 package org.devlive.lightcall.config;
 
 import lombok.Data;
+import org.devlive.lightcall.interceptor.Interceptor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class LightCallConfig
@@ -8,6 +12,7 @@ public class LightCallConfig
     private String baseUrl;
     private int connectTimeout;
     private int readTimeout;
+    private List<Interceptor> interceptors = new ArrayList<>();
 
     private LightCallConfig(String baseUrl)
     {
@@ -37,6 +42,12 @@ public class LightCallConfig
     public LightCallConfig readTimeout(int readTimeout)
     {
         this.readTimeout = readTimeout;
+        return this;
+    }
+
+    public LightCallConfig addInterceptor(Interceptor interceptor)
+    {
+        this.interceptors.add(interceptor);
         return this;
     }
 }
