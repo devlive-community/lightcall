@@ -4,6 +4,7 @@ import lombok.Data;
 import org.devlive.lightcall.interceptor.Interceptor;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Data
@@ -48,6 +49,7 @@ public class LightCallConfig
     public LightCallConfig addInterceptor(Interceptor interceptor)
     {
         this.interceptors.add(interceptor);
+        this.getInterceptors().sort(Comparator.comparingInt(Interceptor::order));
         return this;
     }
 }
