@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interceptor - LightCall</title>
+    <title>Error - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -390,7 +390,7 @@
                         <a href="/usage/interceptor.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -408,7 +408,7 @@
                         <a href="/usage/error.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -479,7 +479,7 @@
         <div class="mb-3">
             
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-3xl">
-                    Interceptor
+                    Error
                 </h1>
                 
             
@@ -493,7 +493,7 @@
             
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持拦截器，可以在请求和响应之前做一些操作</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持错误处理。</span>
     
         <div class="space-y-4"></div>
     
@@ -507,7 +507,11 @@
             <div class="w-full px-5 py-3">
                 <div class="text-sm text-blue-700">
                     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持多个拦截器，可以在请求和响应之前做一些操作。支持用户自定义拦截器。</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持多个错误处理规则，用户可以通过 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">addErrorHandler</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加错误处理规则。</span>
     
                 </div>
             </div>
@@ -537,9 +541,9 @@
                     
         <span class="text-base text-gray-700 leading-7 my-2">只需要在初始化配置的时候使用 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">addInterceptor</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">addErrorHandler</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加拦截器即可</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加错误处理规则即可</span>
     
                 </div>
             </div>
@@ -547,7 +551,7 @@
     
         <div class="space-y-4"></div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com")
-            .addInterceptor(new LoggingInterceptor());</code></div>
+            .addErrorHandler(new DefaultErrorHandler());</code></div>
         <div class="space-y-4"></div>
     
         <div class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-2xl [&_span]:sm:!text-3xl">
@@ -572,15 +576,15 @@
                     
         <span class="text-base text-gray-700 leading-7 my-2">只需要实现 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">Interceptor</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">ErrorHandler</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 接口，然后实现 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">beforeRequest</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">canHandle</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 和 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">afterResponse</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">handle</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 方法即可</span>
     
@@ -589,27 +593,32 @@
         </div>
     
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">package org.devlive.lightcall.example.interceptor;
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">package org.devlive.lightcall.example.error;
 
 import okhttp3.Request;
 import okhttp3.Response;
-import org.devlive.lightcall.interceptor.Interceptor;
+import org.devlive.lightcall.error.ErrorHandler;
 
-public class LoggingInterceptor
-        implements Interceptor
+public class CustomErrorHandler
+        implements ErrorHandler
 {
     @Override
-    public Request beforeRequest(Request request)
-    {
-        System.out.println("Sending request: " + request.url());
-        return request;
+    public int order() {
+        return 50; // 优先级高于默认处理器
     }
 
     @Override
-    public Response afterResponse(Response response)
-    {
-        System.out.println("Received response: " + response.code());
-        return response;
+    public boolean canHandle(Request request, Response response, Exception exception) {
+        // 处理特定的业务异常
+        return response != null && response.code() == 400;
+    }
+
+    @Override
+    public Object handle(Request request, Response response, Exception exception, Class&lt;?&gt; returnType) throws Exception {
+        // 读取错误响应并转换为业务对象
+        String errorBody = response.body().string();
+        // 进行自定义处理
+        return null; // 或者返回默认值
     }
 }</code></div>
         </div>
