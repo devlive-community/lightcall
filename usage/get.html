@@ -287,16 +287,64 @@
 List&lt;Post&gt; getPosts();</code></div>
         <div class="space-y-4"></div>
     
+        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">getPosts</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP GET 请求，请求路径是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">/posts</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">。</span>
+    
+        <div class="space-y-4"></div>
+    
         <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
-            <div id="fan-hui-zhi" class="inline-flex items-center">
-        <span class="text-base text-gray-700 leading-7 my-2">返回值</span>
+            <div id="qing-qiu-can-shu-ke-xuan" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">请求参数 (可选)</span>
     </div>
         </div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">返回值类型为 List</span>
-    <Post>
-        <span class="text-base text-gray-700 leading-7 my-2">。</span>
+        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
+        
+        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
+               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
+           </div>
+                   
+            <div class="w-full px-5 py-3">
+                <div class="text-sm text-blue-700">
+                    
+        <span class="text-base text-gray-700 leading-7 my-2">你可以使用 </span>
     
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解标记在请求中的参数。</span>
+    
+                </div>
+            </div>
+        </div>
+    
+        <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Get("/posts")
+List&lt;Post&gt; getPosts(
+    @RequestParam("page") int page,
+    @RequestParam("size") int size
+);</code></div>
+        <div class="space-y-4"></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">page</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 和 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">size</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 是请求参数。系统会将路径构建为</span>
+    
+        <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="">/posts?page=1&size=10</code></div>
         </div>
     </div>
 </div>
@@ -325,11 +373,11 @@ List&lt;Post&gt; getPosts();</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#fan-hui-zhi"
+                                    <a href="#qing-qiu-can-shu-ke-xuan"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="fan-hui-zhi">
+                                       data-slug="qing-qiu-can-shu-ke-xuan">
                                         
-        <span class="text-base text-gray-700 leading-7 my-2">返回值</span>
+        <span class="text-base text-gray-700 leading-7 my-2">请求参数 (可选)</span>
     
                                     </a>
                                 </div>
@@ -377,11 +425,11 @@ List&lt;Post&gt; getPosts();</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#fan-hui-zhi"
+                                    <a href="#qing-qiu-can-shu-ke-xuan"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="fan-hui-zhi">
+                                       data-slug="qing-qiu-can-shu-ke-xuan">
                                         
-        <span class="text-base text-gray-700 leading-7 my-2">返回值</span>
+        <span class="text-base text-gray-700 leading-7 my-2">请求参数 (可选)</span>
     
                                     </a>
                                 </div>
