@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 80">
+    <!-- Background Layer (Optional) -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- Light beam effect -->
+        <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:0.8" />
+            <stop offset="50%" style="stop-color:#4a90e2;stop-opacity:0.4" />
+            <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:0" />
+        </linearGradient>
+    </defs>
+
+    <!-- Main Logo Container -->
+    <g transform="translate(15, 0)">
+        <!-- Light Beam Symbol -->
+        <path d="M10,30 L40,30 A25,25 0 0,1 65,55 L140,55"
+              stroke="url(#beamGradient)"
+              stroke-width="10"
+              fill="none"
+              stroke-linecap="round"/>
+
+        <!-- Connection Points -->
+        <circle cx="10" cy="30" r="6" fill="#4a90e2"/>
+        <circle cx="140" cy="55" r="6" fill="#4a90e2"/>
+
+        <!-- Light Flash Effect -->
+        <path d="M90,42 L102,25 L114,42 L102,36 Z"
+              fill="#4a90e2"
+              opacity="0.9"/>
+    </g>
+
+    <!-- Text Layer -->
+    <g transform="translate(11, 60)">
+        <text x="0" y="0"
+              font-family="Arial, sans-serif"
+              font-size="20"
+              font-weight="bold"
+              fill="#2c3e50">
+            Light<tspan fill="#4a90e2">Call</tspan>
+        </text>
+    </g>
+</svg>
