@@ -6,6 +6,8 @@ public interface ParameterHandler
 {
     /**
      * 检查是否可以处理该参数
+     *
+     * @param parameter 方法参数
      */
     boolean canHandle(Parameter parameter);
 
