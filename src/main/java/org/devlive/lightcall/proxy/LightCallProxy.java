@@ -1,8 +1,6 @@
 package org.devlive.lightcall.proxy;
 
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -10,15 +8,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.devlive.lightcall.RequestException;
 import org.devlive.lightcall.annotation.Get;
-import org.devlive.lightcall.annotation.RequestParam;
 import org.devlive.lightcall.config.LightCallConfig;
+import org.devlive.lightcall.handler.ParameterHandler;
+import org.devlive.lightcall.handler.ParameterHandlerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -50,24 +48,89 @@ public class LightCallProxy
                 method.getName(),
                 formatMethodArgs(method, args));
 
-        // 处理 Object 方法
         if (method.getDeclaringClass() == Object.class) {
             log.trace("Handling Object method: {}", method.getName());
             return method.invoke(this, args);
         }
 
-        // 处理 Get 注解
         Get getAnnotation = method.getAnnotation(Get.class);
         if (getAnnotation != null) {
             log.debug("Processing @Get annotation with value: {}", getAnnotation.value());
             HttpUrl url = buildUrl(getAnnotation.value(), method, args);
-            log.info("Executing GET request to URL: {}", url);
-            return executeGet(url, method.getGenericReturnType());
+            return executeGet(url, method.getReturnType());
         }
 
-        String errorMessage = String.format("Method %s is not annotated with @Get", method.getName());
-        log.error(errorMessage);
-        throw new UnsupportedOperationException(errorMessage);
+        throw new UnsupportedOperationException(
+                String.format("Method %s is not annotated with @Get", method.getName()));
+    }
+
+    private HttpUrl buildUrl(String path, Method method, Object[] args)
+    {
+        log.debug("Building URL for path: {} with args: {}", path, Arrays.toString(args));
+
+        // 创建基础 URL 构建器
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(config.getBaseUrl())
+                .newBuilder();
+
+        // 获取参数处理器
+        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(urlBuilder);
+
+        // 处理参数
+        Parameter[] parameters = method.getParameters();
+        String processedPath = path;
+
+        for (int i = 0; i < parameters.length; i++) {
+            Parameter parameter = parameters[i];
+            Object arg = args[i];
+
+            // 找到合适的处理器处理参数
+            for (ParameterHandler handler : handlers) {
+                if (handler.canHandle(parameter)) {
+                    processedPath = handler.handle(parameter, arg, processedPath);
+                    break;
+                }
+            }
+        }
+
+        // 添加处理后的路径
+        if (!processedPath.startsWith("/")) {
+            processedPath = "/" + processedPath;
+        }
+        urlBuilder.addPathSegments(processedPath.substring(1));
+
+        HttpUrl url = urlBuilder.build();
+        log.debug("Built URL: {}", url);
+        return url;
+    }
+
+    private <T> T executeGet(HttpUrl url, Class<T> returnType)
+            throws Exception
+    {
+        log.info("Executing GET request - URL: {}, Expected return type: {}", url, returnType);
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        long startTime = System.currentTimeMillis();
+        try (Response response = client.newCall(request).execute()) {
+            long duration = System.currentTimeMillis() - startTime;
+            log.debug("Received response in {}ms - Status code: {}", duration, response.code());
+
+            if (!response.isSuccessful()) {
+                throw new RequestException("Request failed with code: " + response.code());
+            }
+
+            if (response.body() == null) {
+                log.warn("Response body is null for URL: {}", url);
+                return null;
+            }
+
+            String responseBody = response.body().string();
+
+            return objectMapper.readValue(responseBody, returnType);
+        }
     }
 
     private String formatMethodArgs(Method method, Object[] args)
@@ -81,100 +144,5 @@ public class LightCallProxy
                         param.getName(),
                         args[Arrays.asList(parameters).indexOf(param)]))
                 .collect(Collectors.joining(", "));
-    }
-
-    private HttpUrl buildUrl(String path, Method method, Object[] args)
-    {
-        log.debug("Building URL for path: {} with args: {}", path, Arrays.toString(args));
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(config.getBaseUrl())
-                .newBuilder()
-                .addPathSegments(path.startsWith("/") ? path.substring(1) : path);
-
-        // 处理请求参数
-        Parameter[] parameters = method.getParameters();
-        for (int i = 0; i < parameters.length; i++) {
-            RequestParam param = parameters[i].getAnnotation(RequestParam.class);
-            if (param != null && args[i] != null) {
-                String paramName = param.value().isEmpty() ? parameters[i].getName() : param.value();
-                String paramValue = String.valueOf(args[i]);
-                log.trace("Adding query parameter: {}={}", paramName, paramValue);
-                urlBuilder.addQueryParameter(paramName, paramValue);
-            }
-        }
-
-        HttpUrl url = urlBuilder.build();
-        log.debug("Built URL: {}", url);
-        return url;
-    }
-
-    private Object executeGet(HttpUrl url, Type returnType)
-            throws Exception
-    {
-        log.info("Executing GET request - URL: {}, Expected return type: {}", url, returnType);
-        Request request = new Request.Builder()
-                .url(url)
-                .get()
-                .build();
-
-        long startTime = System.currentTimeMillis();
-        try (Response response = client.newCall(request).execute()) {
-            long duration = System.currentTimeMillis() - startTime;
-            log.debug("Received response in {}ms - Status code: {}", duration, response.code());
-
-            if (!response.isSuccessful()) {
-                String errorMessage = String.format("Request failed with code: %d - URL: %s",
-                        response.code(), url);
-                log.error(errorMessage);
-                throw new RequestException(errorMessage);
-            }
-
-            if (response.body() == null) {
-                log.warn("Response body is null for URL: {}", url);
-                return null;
-            }
-
-            byte[] bodyBytes = response.body().bytes();
-            log.trace("Response body: {}", new String(bodyBytes));
-
-            JavaType javaType = getJavaType(returnType);
-            log.debug("Deserializing response to type: {}", javaType);
-
-            try {
-                Object result = objectMapper.readValue(bodyBytes, javaType);
-                log.debug("Successfully deserialized response - Result type: {}",
-                        result != null ? result.getClass().getName() : "null");
-                return result;
-            }
-            catch (Exception e) {
-                log.error("Failed to deserialize response for URL: {} to type: {}", url, javaType, e);
-                throw e;
-            }
-        }
-        catch (Exception e) {
-            log.error("Error executing GET request to URL: {}", url, e);
-            throw e;
-        }
-    }
-
-    private JavaType getJavaType(Type type)
-    {
-        log.trace("Resolving JavaType for: {}", type);
-        TypeFactory typeFactory = objectMapper.getTypeFactory();
-
-        if (type instanceof ParameterizedType) {
-            log.debug("Handling parameterized type: {}", type);
-            ParameterizedType parameterizedType = (ParameterizedType) type;
-            Type rawType = parameterizedType.getRawType();
-            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
-
-            JavaType[] javaTypes = new JavaType[actualTypeArguments.length];
-            for (int i = 0; i < actualTypeArguments.length; i++) {
-                javaTypes[i] = getJavaType(actualTypeArguments[i]);
-            }
-
-            return typeFactory.constructParametricType((Class<?>) rawType, javaTypes);
-        }
-
-        return typeFactory.constructType(type);
     }
 }

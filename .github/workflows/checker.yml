@@ -2,7 +2,6 @@ name: Checker
 
 on:
   push:
-    branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
   workflow_dispatch:
