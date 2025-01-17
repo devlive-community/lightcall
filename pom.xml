@@ -51,7 +51,7 @@
         <lombok.version>1.18.34</lombok.version>
 
         <!-- 插件版本 -->
-        <checkstyle.version>10.12.5</checkstyle.version>
+        <checkstyle.version>8.29</checkstyle.version>
         <spotbugs.version>4.8.1.0</spotbugs.version>
         <dependency-check.version>8.4.3</dependency-check.version>
     </properties>
