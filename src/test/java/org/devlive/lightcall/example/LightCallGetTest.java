@@ -33,4 +33,10 @@ class LightCallGetTest
     {
         Assertions.assertNotNull(service.getPostParamAndPath(1L, "title"));
     }
+
+    @Test
+    public void testGetPostPathAndHeader()
+    {
+        Assertions.assertNotNull(service.getPostPathAndHeader(1L, "apiKey"));
+    }
 }

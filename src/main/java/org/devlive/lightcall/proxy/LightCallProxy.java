@@ -6,6 +6,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.devlive.lightcall.RequestContext;
 import org.devlive.lightcall.RequestException;
 import org.devlive.lightcall.annotation.Get;
 import org.devlive.lightcall.config.LightCallConfig;
@@ -40,7 +41,11 @@ public class LightCallProxy
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args)
+    public Object invoke(
+            Object proxy,
+            Method method,
+            Object[] args
+    )
             throws Throwable
     {
         log.debug("Invoking method: {}.{}({})",
@@ -56,34 +61,41 @@ public class LightCallProxy
         Get getAnnotation = method.getAnnotation(Get.class);
         if (getAnnotation != null) {
             log.debug("Processing @Get annotation with value: {}", getAnnotation.value());
-            HttpUrl url = buildUrl(getAnnotation.value(), method, args);
-            return executeGet(url, method.getReturnType());
+
+            // 创建请求上下文
+            RequestContext context = RequestContext.create(config.getBaseUrl());
+
+            // 构建 URL 和处理 headers
+            HttpUrl url = buildUrl(getAnnotation.value(), method, args, context);
+
+            return executeGet(url, method.getReturnType(), context);
         }
 
         throw new UnsupportedOperationException(
                 String.format("Method %s is not annotated with @Get", method.getName()));
     }
 
-    private HttpUrl buildUrl(String path, Method method, Object[] args)
+    private HttpUrl buildUrl(
+            String path,
+            Method method,
+            Object[] args,
+            RequestContext context
+    )
     {
         log.debug("Building URL for path: {} with args: {}", path, Arrays.toString(args));
 
-        // 创建基础 URL 构建器
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(config.getBaseUrl())
-                .newBuilder();
-
         // 获取参数处理器
-        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(urlBuilder);
+        List<ParameterHandler> handlers = ParameterHandlerFactory.createHandlers(context);
 
         // 处理参数
         Parameter[] parameters = method.getParameters();
         String processedPath = path;
 
+        // 处理参数级注解
         for (int i = 0; i < parameters.length; i++) {
             Parameter parameter = parameters[i];
             Object arg = args[i];
 
-            // 找到合适的处理器处理参数
             for (ParameterHandler handler : handlers) {
                 if (handler.canHandle(parameter)) {
                     processedPath = handler.handle(parameter, arg, processedPath);
@@ -96,22 +108,27 @@ public class LightCallProxy
         if (!processedPath.startsWith("/")) {
             processedPath = "/" + processedPath;
         }
-        urlBuilder.addPathSegments(processedPath.substring(1));
+        context.getUrlBuilder().addPathSegments(processedPath.substring(1));
 
-        HttpUrl url = urlBuilder.build();
+        HttpUrl url = context.getUrlBuilder().build();
         log.debug("Built URL: {}", url);
         return url;
     }
 
-    private <T> T executeGet(HttpUrl url, Class<T> returnType)
+    private <T> T executeGet(
+            HttpUrl url,
+            Class<T> returnType,
+            RequestContext context
+    )
             throws Exception
     {
         log.info("Executing GET request - URL: {}, Expected return type: {}", url, returnType);
 
-        Request request = new Request.Builder()
+        Request request = context.getRequestBuilder()
                 .url(url)
                 .get()
                 .build();
+        log.info("Executing request - URL: {}, Headers: {}", url, request.headers());
 
         long startTime = System.currentTimeMillis();
         try (Response response = client.newCall(request).execute()) {
@@ -133,7 +150,10 @@ public class LightCallProxy
         }
     }
 
-    private String formatMethodArgs(Method method, Object[] args)
+    private String formatMethodArgs(
+            Method method,
+            Object[] args
+    )
     {
         if (args == null || args.length == 0) {
             return "";

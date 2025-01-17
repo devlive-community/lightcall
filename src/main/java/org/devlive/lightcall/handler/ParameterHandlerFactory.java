@@ -1,17 +1,18 @@
 package org.devlive.lightcall.handler;
 
-import okhttp3.HttpUrl;
+import org.devlive.lightcall.RequestContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParameterHandlerFactory
 {
-    public static List<ParameterHandler> createHandlers(HttpUrl.Builder urlBuilder)
+    public static List<ParameterHandler> createHandlers(RequestContext context)
     {
         List<ParameterHandler> handlers = new ArrayList<>();
-        handlers.add(RequestParamHandler.create(urlBuilder));
+        handlers.add(RequestParamHandler.create(context.getUrlBuilder()));
         handlers.add(PathVariableHandler.create());
+        handlers.add(HeaderHandler.create(context.getRequestBuilder()));
         return handlers;
     }
 }

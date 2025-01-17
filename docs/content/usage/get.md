@@ -27,7 +27,9 @@ List<Post> getPosts();
 
 该示例中的 `getPosts` 是一个 HTTP GET 请求，请求路径是 `/posts`。
 
-### 请求参数 (可选)
+### `@RequestParam`
+
+---
 
 !!! info "提示"
 
@@ -49,7 +51,9 @@ List<Post> getPosts(
 /posts?page=1&size=10
 ```
 
-### 路径参数 (可选)
+### `@PathVariable`
+
+---
 
 !!! info "提示"
 

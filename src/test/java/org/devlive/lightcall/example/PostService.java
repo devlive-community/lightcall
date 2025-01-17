@@ -1,6 +1,7 @@
 package org.devlive.lightcall.example;
 
 import org.devlive.lightcall.annotation.Get;
+import org.devlive.lightcall.annotation.Header;
 import org.devlive.lightcall.annotation.PathVariable;
 import org.devlive.lightcall.annotation.RequestParam;
 
@@ -24,5 +25,11 @@ public interface PostService
     Post getPostParamAndPath(
             @PathVariable("id") Long id,
             @RequestParam("title") String title
+    );
+
+    @Get("/posts/{id}")
+    Post getPostPathAndHeader(
+            @PathVariable("id") Long id,
+            @Header("x-api-key") String apiKey
     );
 }
