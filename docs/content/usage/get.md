@@ -25,6 +25,26 @@ public interface PostService
 List<Post> getPosts();
 ```
 
-### 返回值
+该示例中的 `getPosts` 是一个 HTTP GET 请求，请求路径是 `/posts`。
 
-返回值类型为 List<Post>。
+### 请求参数 (可选)
+
+!!! info "提示"
+
+    你可以使用 `@RequestParam` 注解标记在请求中的参数。
+
+!!!
+
+```java
+@Get("/posts")
+List<Post> getPosts(
+    @RequestParam("page") int page,
+    @RequestParam("size") int size
+);
+```
+
+该示例中的 `page` 和 `size` 是请求参数。系统会将路径构建为
+
+```
+/posts?page=1&size=10
+```
