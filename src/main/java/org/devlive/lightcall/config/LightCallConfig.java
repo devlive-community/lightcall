@@ -1,6 +1,8 @@
 package org.devlive.lightcall.config;
 
 import lombok.Data;
+import org.devlive.lightcall.error.DefaultErrorHandler;
+import org.devlive.lightcall.error.ErrorHandler;
 import org.devlive.lightcall.interceptor.Interceptor;
 
 import java.util.ArrayList;
@@ -14,10 +16,13 @@ public class LightCallConfig
     private int connectTimeout;
     private int readTimeout;
     private List<Interceptor> interceptors = new ArrayList<>();
+    private List<ErrorHandler> errorHandlers = new ArrayList<>();
 
     private LightCallConfig(String baseUrl)
     {
         this.baseUrl = baseUrl;
+
+        this.errorHandlers.add(new DefaultErrorHandler());
     }
 
     public static LightCallConfig create(String baseUrl)
@@ -50,6 +55,13 @@ public class LightCallConfig
     {
         this.interceptors.add(interceptor);
         this.getInterceptors().sort(Comparator.comparingInt(Interceptor::order));
+        return this;
+    }
+
+    public LightCallConfig addErrorHandler(ErrorHandler errorHandler)
+    {
+        this.errorHandlers.add(errorHandler);
+        this.getErrorHandlers().sort(Comparator.comparingInt(ErrorHandler::order));
         return this;
     }
 }

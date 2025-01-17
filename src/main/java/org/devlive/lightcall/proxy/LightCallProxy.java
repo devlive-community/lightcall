@@ -39,7 +39,7 @@ public class LightCallProxy
         this.processors = new HashMap<>();
 
         // 注册默认的 GET 处理器
-        registerProcessor(GetProcessor.create(client, objectMapper, config.getInterceptors()));
+        registerProcessor(GetProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
     }
 
     public <A extends Annotation> void registerProcessor(MethodProcessor<A> processor)

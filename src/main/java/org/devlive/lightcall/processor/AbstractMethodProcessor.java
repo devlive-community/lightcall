@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.devlive.lightcall.RequestContext;
-import org.devlive.lightcall.RequestException;
+import org.devlive.lightcall.error.ErrorHandler;
 import org.devlive.lightcall.handler.ParameterHandler;
 import org.devlive.lightcall.handler.ParameterHandlerFactory;
 import org.devlive.lightcall.interceptor.Interceptor;
@@ -24,12 +24,14 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
     protected final OkHttpClient client;
     protected final ObjectMapper objectMapper;
     protected final List<Interceptor> interceptors;
+    protected final List<ErrorHandler> errorHandlers;
 
-    protected AbstractMethodProcessor(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors)
+    protected AbstractMethodProcessor(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors, List<ErrorHandler> errorHandlers)
     {
         this.client = client;
         this.objectMapper = objectMapper;
         this.interceptors = interceptors;
+        this.errorHandlers = errorHandlers;
     }
 
     @Override
@@ -82,18 +84,12 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
         log.info("Executing request - URL: {}, Method: {}", request.url(), request.method());
 
         Request interceptedRequest = applyBeforeRequestInterceptors(request);
+        Response response = null;
+        Exception exception;
 
-        long startTime = System.currentTimeMillis();
         try {
-            Response response = client.newCall(interceptedRequest).execute();
-            long duration = System.currentTimeMillis() - startTime;
-            log.debug("Received response in {}ms - Status code: {}", duration, response.code());
-
+            response = client.newCall(interceptedRequest).execute();
             response = applyAfterResponseInterceptors(response);
-
-            if (!response.isSuccessful()) {
-                throw new RequestException("Request failed with code: " + response.code());
-            }
 
             if (response.body() == null) {
                 log.warn("Response body is null for URL: {}", request.url());
@@ -106,8 +102,22 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
             return objectMapper.readValue(responseBody, returnType);
         }
         catch (Exception e) {
-            log.error("Error executing request: {}", e.getMessage(), e);
+            exception = e;
+            // 尝试使用错误处理器处理异常
+            for (ErrorHandler handler : errorHandlers) {
+                if (handler.canHandle(interceptedRequest, response, exception)) {
+                    Object result = handler.handle(interceptedRequest, response, exception, returnType);
+                    if (result != null) {
+                        return (T) result;
+                    }
+                }
+            }
             throw e;
+        }
+        finally {
+            if (response != null) {
+                response.close();
+            }
         }
     }
 

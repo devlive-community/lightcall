@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.devlive.lightcall.RequestContext;
 import org.devlive.lightcall.annotation.Get;
+import org.devlive.lightcall.error.ErrorHandler;
 import org.devlive.lightcall.interceptor.Interceptor;
 
 import java.util.List;
@@ -15,14 +16,14 @@ import java.util.List;
 public class GetProcessor
         extends AbstractMethodProcessor<Get>
 {
-    public static GetProcessor create(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors)
+    private GetProcessor(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors, List<ErrorHandler> errorHandlers)
     {
-        return new GetProcessor(client, objectMapper, interceptors);
+        super(client, objectMapper, interceptors, errorHandlers);
     }
 
-    private GetProcessor(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors)
+    public static GetProcessor create(OkHttpClient client, ObjectMapper objectMapper, List<Interceptor> interceptors, List<ErrorHandler> errorHandlers)
     {
-        super(client, objectMapper, interceptors);
+        return new GetProcessor(client, objectMapper, interceptors, errorHandlers);
     }
 
     @Override

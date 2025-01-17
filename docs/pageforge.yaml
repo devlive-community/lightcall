@@ -29,5 +29,6 @@ nav:
     - /getting-started/get-started
   - 文档:
     - /usage/interceptor
+    - /usage/error
     - /usage/header
     - /usage/get
