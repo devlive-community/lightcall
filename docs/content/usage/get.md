@@ -48,3 +48,22 @@ List<Post> getPosts(
 ```
 /posts?page=1&size=10
 ```
+
+### 路径参数 (可选)
+
+!!! info "提示"
+
+    你可以使用 `@PathVariable` 注解标记在路径中的参数。
+
+!!!
+
+```java
+@Get("/posts/{id}")
+Post getPost(@PathVariable("id") Long id);
+```
+
+该示例中的 `id` 是路径参数。系统会将路径构建为
+
+```
+/posts/1
+```

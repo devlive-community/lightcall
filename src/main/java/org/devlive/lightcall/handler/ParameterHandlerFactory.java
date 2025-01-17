@@ -11,6 +11,7 @@ public class ParameterHandlerFactory
     {
         List<ParameterHandler> handlers = new ArrayList<>();
         handlers.add(RequestParamHandler.create(urlBuilder));
+        handlers.add(PathVariableHandler.create());
         return handlers;
     }
 }

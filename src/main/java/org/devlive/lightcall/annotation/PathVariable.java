@@ -12,4 +12,6 @@ import java.lang.annotation.Target;
 public @interface PathVariable
 {
     String value() default "";
+
+    boolean required() default true;
 }
