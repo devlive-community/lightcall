@@ -27,21 +27,21 @@ List<Post> getPosts();
 
 该示例中的 `getPosts` 是一个 HTTP GET 请求，请求路径是 `/posts`。
 
-### `@RequestParam`
+### `@Param`
 
 ---
 
 !!! info "提示"
 
-    你可以使用 `@RequestParam` 注解标记在请求中的参数。
+    你可以使用 `@Param` 注解标记在请求中的参数。
 
 !!!
 
 ```java
 @Get("/posts")
 List<Post> getPosts(
-    @RequestParam("page") int page,
-    @RequestParam("size") int size
+    @Param("page") int page,
+    @Param("size") int size
 );
 ```
 

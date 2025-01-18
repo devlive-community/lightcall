@@ -4,7 +4,7 @@ import org.devlive.lightcall.annotation.Get;
 import org.devlive.lightcall.annotation.Header;
 import org.devlive.lightcall.annotation.Headers;
 import org.devlive.lightcall.annotation.PathVariable;
-import org.devlive.lightcall.annotation.RequestParam;
+import org.devlive.lightcall.annotation.Param;
 import org.devlive.lightcall.example.PostModel;
 
 import java.util.List;
@@ -16,8 +16,8 @@ public interface GetService
 
     @Get("/posts")
     List<PostModel> getPostsPaged(
-            @RequestParam("page") int page,
-            @RequestParam("size") int size
+            @Param("page") int page,
+            @Param("size") int size
     );
 
     @Get("/posts/{id}")
@@ -26,7 +26,7 @@ public interface GetService
     @Get("/posts/{id}")
     PostModel getPostParamAndPath(
             @PathVariable("id") Long id,
-            @RequestParam("title") String title
+            @Param("title") String title
     );
 
     @Get("/posts/{id}")
@@ -43,6 +43,6 @@ public interface GetService
     PostModel getPostHeaderAndParam(
             @PathVariable("id") Long id,
             @Header("x-api-key") String apiKey,
-            @RequestParam("title") String title
+            @Param("title") String title
     );
 }
