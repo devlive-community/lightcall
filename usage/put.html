@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get - LightCall</title>
+    <title>Put - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -444,7 +444,7 @@
                         <a href="/usage/get.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -480,7 +480,7 @@
                         <a href="/usage/put.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -515,7 +515,7 @@
         <div class="mb-3">
             
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-3xl">
-                    Get
+                    Put
                 </h1>
                 
             
@@ -529,7 +529,7 @@
             
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 提供了 HTTP GET 请求的支持。</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 提供了 HTTP Put 请求的支持。</span>
     
         <div class="space-y-4"></div>
     
@@ -545,11 +545,11 @@
                     
         <span class="text-base text-gray-700 leading-7 my-2">LightCall 需要在方法上添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Get</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Put</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解来标识该方法是一个 HTTP GET 请求。并且添加 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解来标识该方法是一个 HTTP PUT 请求。并且添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Get</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Put</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 注解的类必须是一个接口。</span>
     
@@ -560,14 +560,14 @@
         <div class="space-y-4"></div>
     <span class="inline-block my-1 mx-auto">我们使用的模拟数据是，他的代码可以在 
         <a class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 cursor-pointer"
-           href="https://github.com/devliveorg/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/PostService.java"
+           href="https://github.com/devlive-community/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/put/PutService.java"
            target="_blank"
-           title="PostService">
+           title="PutService">
             这里
         </a>
      查看。</span>
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">public interface PostService
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">public interface PutService
 {}</code></div>
         <div class="space-y-4"></div>
     
@@ -576,15 +576,60 @@
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
     </div>
         </div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Get("/posts")
-List&lt;Post&gt; getPosts();</code></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">在方法上添加 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Post</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP POST 请求了。</span>
+    
+        <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Put("/posts/{id}")
+PostModel putPost(@PathVariable("id") Long id, @Body PostModel post);</code></div>
         <div class="space-y-4"></div>
     
         <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">getPosts</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">putPost</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP GET 请求，请求路径是 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP POST 请求，请求路径是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">/posts</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">，请求体是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">PostModel</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 对象。</span>
+    
+        <div class="space-y-4"></div>
+    
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="Body" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">@Body</span>
+    </div>
+        </div>
+    
+        <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
+    
+        <div class="space-y-4"></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">在方法上添加 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Body</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP POST 请求的请求体了。</span>
+    
+        <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Post("/posts")
+PostModel putPost(@Body PostModel post);</code></div>
+        <div class="space-y-4"></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">该示例构建的请求体是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">PostModel</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 对象，请求路径是 </span>
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">/posts</code>
     
@@ -592,16 +637,6 @@ List&lt;Post&gt; getPosts();</code></div>
     
         <div class="space-y-4"></div>
     
-        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
-            <div id="RequestParam" class="inline-flex items-center">
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
-    </div>
-        </div>
-    
-        <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
-    
-        <div class="space-y-4"></div>
-    
         <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
         
         <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
@@ -612,108 +647,18 @@ List&lt;Post&gt; getPosts();</code></div>
             <div class="w-full px-5 py-3">
                 <div class="text-sm text-blue-700">
                     
-        <span class="text-base text-gray-700 leading-7 my-2">你可以使用 </span>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Body</code>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+        <span class="text-base text-gray-700 leading-7 my-2"> 支持自定义 MediaType，默认是 </span>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解标记在请求中的参数。</span>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">application/json</code>
     
-                </div>
-            </div>
-        </div>
+        <span class="text-base text-gray-700 leading-7 my-2">。通过 </span>
     
-        <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Get("/posts")
-List&lt;Post&gt; getPosts(
-    @RequestParam("page") int page,
-    @RequestParam("size") int size
-);</code></div>
-        <div class="space-y-4"></div>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">mediaType</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 参数可以指定 MediaType。</span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">page</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 和 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">size</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 是请求参数。系统会将路径构建为</span>
-    
-        <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="">/posts?page=1&size=10</code></div>
-        <div class="space-y-4"></div>
-    
-        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
-            <div id="PathVariable" class="inline-flex items-center">
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@PathVariable</code>
-    </div>
-        </div>
-    
-        <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
-    
-        <div class="space-y-4"></div>
-    
-        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
-        
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
-           </div>
-                   
-            <div class="w-full px-5 py-3">
-                <div class="text-sm text-blue-700">
-                    
-        <span class="text-base text-gray-700 leading-7 my-2">你可以使用 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@PathVariable</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解标记在路径中的参数。</span>
-    
-                </div>
-            </div>
-        </div>
-    
-        <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Get("/posts/{id}")
-Post getPost(@PathVariable("id") Long id);</code></div>
-        <div class="space-y-4"></div>
-    
-        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">id</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 是路径参数。系统会将路径构建为</span>
-    
-        <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="">/posts/1</code></div>
-        <div class="space-y-4"></div>
-    
-        <div class="rounded-lg my-2 overflow-hidden border border-red-200">
-        
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-red-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">注意</h3>
-           </div>
-                   
-            <div class="w-full px-5 py-3">
-                <div class="text-sm text-red-700">
-                    
-        <span class="text-base text-gray-700 leading-7 my-2">如果需要传递 HTTP Header，需要使用 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Header</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 或 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Headers</code>
-    <span class="inline-block my-1 mx-auto"> 注解。请参考 
-        <a class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 cursor-pointer"
-           href="/usage/header.html"
-           target="_self"
-           title="">
-            Header
-        </a>
-    。</span>
                 </div>
             </div>
         </div>
@@ -746,22 +691,11 @@ Post getPost(@PathVariable("id") Long id);</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#RequestParam"
+                                    <a href="#Body"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="RequestParam">
+                                       data-slug="Body">
                                         
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
-    
-                                    </a>
-                                </div>
-                                
-                            
-                                <div class="pl-8">
-                                    <a href="#PathVariable"
-                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="PathVariable">
-                                        
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@PathVariable</code>
+        <span class="text-base text-gray-700 leading-7 my-2">@Body</span>
     
                                     </a>
                                 </div>
@@ -809,22 +743,11 @@ Post getPost(@PathVariable("id") Long id);</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#RequestParam"
+                                    <a href="#Body"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="RequestParam">
+                                       data-slug="Body">
                                         
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
-    
-                                    </a>
-                                </div>
-                                
-                            
-                                <div class="pl-8">
-                                    <a href="#PathVariable"
-                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="PathVariable">
-                                        
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@PathVariable</code>
+        <span class="text-base text-gray-700 leading-7 my-2">@Body</span>
     
                                     </a>
                                 </div>

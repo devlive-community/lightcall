@@ -476,6 +476,24 @@
                         
                     </li>
                 
+                    <li class="relative">
+                        <a href="/usage/put.html"
+                           class="group block">
+                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                       rounded-md transition-all duration-200 ease-in-out">
+
+                                
+
+                                <span class="flex-grow text-sm sm:text-base">Put</span>
+
+                                
+                            </div>
+                        </a>
+
+                        
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -567,7 +585,7 @@
     
         <div class="space-y-4"></div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Post("/posts")
-org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);</code></div>
+PostModel createPost(@Body PostModel post);</code></div>
         <div class="space-y-4"></div>
     
         <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
@@ -580,7 +598,7 @@ org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.exampl
     
         <span class="text-base text-gray-700 leading-7 my-2">，请求体是 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">Post</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">PostModel</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 对象。</span>
     
@@ -604,12 +622,12 @@ org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.exampl
     
         <div class="space-y-4"></div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Post("/posts")
-org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);</code></div>
+PostModel createPost(@Body PostModel post);</code></div>
         <div class="space-y-4"></div>
     
         <span class="text-base text-gray-700 leading-7 my-2">该示例构建的请求体是 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">Post</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">PostModel</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 对象，请求路径是 </span>
     
