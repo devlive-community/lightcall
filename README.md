@@ -1,6 +1,12 @@
+<div align="center">
+
+<img width=180 src="docs/assets/logo.svg" />
+
 # LightCall
 
 LightCall 是一个轻量级的声明式服务调用框架，让服务调用像写接口一样简单。通过简洁的注解方式，帮助开发者以最小的代价实现优雅的服务访问。
+
+</div>
 
 ## 特性
 
