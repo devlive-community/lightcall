@@ -17,6 +17,7 @@ public class RequestContext
     private final HttpUrl.Builder urlBuilder;
     private final Request.Builder requestBuilder;
     private RequestBody body;
+    private MediaType mediaType = MediaType.parse("application/json");  // 默认 MediaType
 
     private RequestContext(HttpUrl.Builder urlBuilder, Request.Builder requestBuilder)
     {
@@ -39,9 +40,30 @@ public class RequestContext
     public void setBody(Object body)
             throws JsonProcessingException
     {
+        setBody(body, this.mediaType);
+    }
+
+    public void setBody(Object body, MediaType mediaType)
+            throws JsonProcessingException
+    {
         if (body == null) {
             throw new IllegalArgumentException("Request body cannot be null");
         }
-        this.body = RequestBody.create(objectMapper.writeValueAsString(body).getBytes(StandardCharsets.UTF_8), MediaType.parse("application/json"));
+        if (mediaType == null) {
+            throw new IllegalArgumentException("MediaType cannot be null");
+        }
+        this.mediaType = mediaType;
+        this.body = RequestBody.create(
+                objectMapper.writeValueAsString(body).getBytes(StandardCharsets.UTF_8),
+                mediaType
+        );
+    }
+
+    public void setMediaType(MediaType mediaType)
+    {
+        if (mediaType == null) {
+            throw new IllegalArgumentException("MediaType cannot be null");
+        }
+        this.mediaType = mediaType;
     }
 }

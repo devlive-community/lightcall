@@ -5,32 +5,32 @@ import org.devlive.lightcall.annotation.Header;
 import org.devlive.lightcall.annotation.Headers;
 import org.devlive.lightcall.annotation.PathVariable;
 import org.devlive.lightcall.annotation.RequestParam;
-import org.devlive.lightcall.example.Post;
+import org.devlive.lightcall.example.PostModel;
 
 import java.util.List;
 
 public interface GetService
 {
     @Get("/posts")
-    List<Post> getPosts();
+    List<PostModel> getPosts();
 
     @Get("/posts")
-    List<Post> getPostsPaged(
+    List<PostModel> getPostsPaged(
             @RequestParam("page") int page,
             @RequestParam("size") int size
     );
 
     @Get("/posts/{id}")
-    Post getPost(@PathVariable("id") Long id);
+    PostModel getPost(@PathVariable("id") Long id);
 
     @Get("/posts/{id}")
-    Post getPostParamAndPath(
+    PostModel getPostParamAndPath(
             @PathVariable("id") Long id,
             @RequestParam("title") String title
     );
 
     @Get("/posts/{id}")
-    Post getPostPathAndHeader(
+    PostModel getPostPathAndHeader(
             @PathVariable("id") Long id,
             @Header("x-api-key") String apiKey
     );
@@ -40,7 +40,7 @@ public interface GetService
             "Accept: application/json",
             "User-Agent: LightCall/1.0"
     })
-    Post getPostHeaderAndParam(
+    PostModel getPostHeaderAndParam(
             @PathVariable("id") Long id,
             @Header("x-api-key") String apiKey,
             @RequestParam("title") String title

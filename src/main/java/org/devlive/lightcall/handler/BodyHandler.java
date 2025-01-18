@@ -2,6 +2,7 @@ package org.devlive.lightcall.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.MediaType;
 import org.devlive.lightcall.RequestContext;
 import org.devlive.lightcall.RequestException;
 import org.devlive.lightcall.annotation.Body;
@@ -38,9 +39,16 @@ public class BodyHandler
             throw new IllegalArgumentException("Request body cannot be null");
         }
 
-        log.debug("Setting request body: {}", arg);
+        Body bodyAnnotation = parameter.getAnnotation(Body.class);
+        MediaType mediaType = MediaType.parse(bodyAnnotation.mediaType());
+
+        if (mediaType == null) {
+            throw new IllegalArgumentException("Invalid MediaType specified: " + bodyAnnotation.mediaType());
+        }
+
+        log.debug("Setting request body with MediaType {}: {}", mediaType, arg);
         try {
-            context.setBody(arg);
+            context.setBody(arg, mediaType);
         }
         catch (JsonProcessingException e) {
             throw new RequestException("Failed to serialize request body", e);

@@ -10,7 +10,7 @@ LightCall 提供了 HTTP POST 请求的支持。
 
 !!!
 
-我们使用的模拟数据是，他的代码可以在 [这里](https://github.com/devliveorg/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/post/PostService.java "PostService" "_blank") 查看。
+我们使用的模拟数据是，他的代码可以在 [这里](https://github.com/devlive-community/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/post/PostService.java "PostService" "_blank") 查看。
 
 ```java
 public interface PostService
@@ -40,3 +40,9 @@ org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.exampl
 ```
 
 该示例构建的请求体是 `Post` 对象，请求路径是 `/posts`。
+
+!!! info "提示"
+
+    `@Body` 支持自定义 MediaType，默认是 `application/json`。通过 `mediaType` 参数可以指定 MediaType。
+
+!!!

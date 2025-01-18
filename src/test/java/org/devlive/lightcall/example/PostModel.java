@@ -3,39 +3,39 @@ package org.devlive.lightcall.example;
 import lombok.Data;
 
 @Data
-public class Post
+public class PostModel
 {
     private String body;
     private String title;
     private Long id;
     private Long userId;
 
-    private Post() {}
+    private PostModel() {}
 
-    public static Post create()
+    public static PostModel create()
     {
-        return new Post();
+        return new PostModel();
     }
 
-    public Post body(String body)
+    public PostModel body(String body)
     {
         this.body = body;
         return this;
     }
 
-    public Post title(String title)
+    public PostModel title(String title)
     {
         this.title = title;
         return this;
     }
 
-    public Post id(Long id)
+    public PostModel id(Long id)
     {
         this.id = id;
         return this;
     }
 
-    public Post userId(Long userId)
+    public PostModel userId(Long userId)
     {
         this.userId = userId;
         return this;
