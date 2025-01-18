@@ -593,8 +593,8 @@ List&lt;Post&gt; getPosts();</code></div>
         <div class="space-y-4"></div>
     
         <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
-            <div id="RequestParam" class="inline-flex items-center">
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+            <div id="Param" class="inline-flex items-center">
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Param</code>
     </div>
         </div>
     
@@ -614,7 +614,7 @@ List&lt;Post&gt; getPosts();</code></div>
                     
         <span class="text-base text-gray-700 leading-7 my-2">你可以使用 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Param</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 注解标记在请求中的参数。</span>
     
@@ -625,8 +625,8 @@ List&lt;Post&gt; getPosts();</code></div>
         <div class="space-y-4"></div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Get("/posts")
 List&lt;Post&gt; getPosts(
-    @RequestParam("page") int page,
-    @RequestParam("size") int size
+    @Param("page") int page,
+    @Param("size") int size
 );</code></div>
         <div class="space-y-4"></div>
     
@@ -746,11 +746,11 @@ Post getPost(@PathVariable("id") Long id);</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#RequestParam"
+                                    <a href="#Param"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="RequestParam">
+                                       data-slug="Param">
                                         
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Param</code>
     
                                     </a>
                                 </div>
@@ -809,11 +809,11 @@ Post getPost(@PathVariable("id") Long id);</code></div>
                                 
                             
                                 <div class="pl-8">
-                                    <a href="#RequestParam"
+                                    <a href="#Param"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="RequestParam">
+                                       data-slug="Param">
                                         
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@RequestParam</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Param</code>
     
                                     </a>
                                 </div>
