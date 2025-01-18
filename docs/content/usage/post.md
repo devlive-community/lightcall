@@ -23,10 +23,10 @@ public interface PostService
 
 ```java
 @Post("/posts")
-org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);
+PostModel createPost(@Body PostModel post);
 ```
 
-该示例中的 `createPost` 是一个 HTTP POST 请求，请求路径是 `/posts`，请求体是 `Post` 对象。
+该示例中的 `createPost` 是一个 HTTP POST 请求，请求路径是 `/posts`，请求体是 `PostModel` 对象。
 
 ### @Body
 
@@ -36,10 +36,10 @@ org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.exampl
 
 ```java
 @Post("/posts")
-org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);
+PostModel createPost(@Body PostModel post);
 ```
 
-该示例构建的请求体是 `Post` 对象，请求路径是 `/posts`。
+该示例构建的请求体是 `PostModel` 对象，请求路径是 `/posts`。
 
 !!! info "提示"
 

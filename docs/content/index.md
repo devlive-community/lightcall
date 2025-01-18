@@ -1,5 +1,5 @@
 ---
-title: 欢迎使用 PageForge
+title: 欢迎使用 LightCall
 layout: home
 
 config:
@@ -8,7 +8,7 @@ config:
 
 hero:
   title: 创新技术解决方案
-  description: 为您的企业或网站提供最前沿的技术支持和解决方案
+  description: 为您的应用提供高性能、安全可靠的服务调用框架
   primaryCta:
     url: /getting-started/get-started.html
     text: 开始使用

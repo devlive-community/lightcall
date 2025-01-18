@@ -8,6 +8,7 @@ import org.devlive.lightcall.config.LightCallConfig;
 import org.devlive.lightcall.processor.GetProcessor;
 import org.devlive.lightcall.processor.MethodProcessor;
 import org.devlive.lightcall.processor.PostProcessor;
+import org.devlive.lightcall.processor.PutProcessor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -42,6 +43,7 @@ public class LightCallProxy
         // 注册默认的处理器
         registerProcessor(GetProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(PostProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(PutProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
     }
 
     public <A extends Annotation> void registerProcessor(MethodProcessor<A> processor)
