@@ -1,14 +1,15 @@
-package org.devlive.lightcall.example;
+package org.devlive.lightcall.example.get;
 
 import org.devlive.lightcall.annotation.Get;
 import org.devlive.lightcall.annotation.Header;
 import org.devlive.lightcall.annotation.Headers;
 import org.devlive.lightcall.annotation.PathVariable;
 import org.devlive.lightcall.annotation.RequestParam;
+import org.devlive.lightcall.example.Post;
 
 import java.util.List;
 
-public interface PostService
+public interface GetService
 {
     @Get("/posts")
     List<Post> getPosts();

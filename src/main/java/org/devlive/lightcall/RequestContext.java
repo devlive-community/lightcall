@@ -18,7 +18,12 @@ public class RequestContext
 
     public static RequestContext create(String baseUrl)
     {
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(baseUrl).newBuilder();
+        HttpUrl url = HttpUrl.parse(baseUrl);
+        if (url == null) {
+            throw new IllegalArgumentException("Base URL cannot be null");
+        }
+
+        HttpUrl.Builder urlBuilder = url.newBuilder();
         Request.Builder requestBuilder = new Request.Builder();
         return new RequestContext(urlBuilder, requestBuilder);
     }

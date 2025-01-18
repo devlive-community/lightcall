@@ -1,14 +1,14 @@
-package org.devlive.lightcall.example;
+package org.devlive.lightcall.example.get;
 
 import org.devlive.lightcall.LightCall;
 import org.devlive.lightcall.config.LightCallConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class LightCallGetTest
+class GetServiceTest
 {
     private final LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com");
-    private final PostService service = LightCall.create(PostService.class, config);
+    private final GetService service = LightCall.create(GetService.class, config);
 
     @Test
     public void testGetPosts()
