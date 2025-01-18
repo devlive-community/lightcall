@@ -17,6 +17,7 @@ public class ParameterHandlerFactory
         handlers.add(RequestParamHandler.create(context.getUrlBuilder()));
         handlers.add(PathVariableHandler.create());
         handlers.add(HeaderHandler.create(context.getRequestBuilder(), method));
+        handlers.add(BodyHandler.create(context));
         return handlers;
     }
 }

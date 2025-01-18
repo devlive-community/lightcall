@@ -1,0 +1,42 @@
+---
+title: Post
+---
+
+LightCall 提供了 HTTP POST 请求的支持。
+
+!!! danger "注意"
+
+    LightCall 需要在方法上添加 `@Post` 注解来标识该方法是一个 HTTP POST 请求。并且添加 `@Post` 注解的类必须是一个接口。
+
+!!!
+
+我们使用的模拟数据是，他的代码可以在 [这里](https://github.com/devliveorg/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/post/PostService.java "PostService" "_blank") 查看。
+
+```java
+public interface PostService
+{}
+```
+
+### 用法
+
+在方法上添加 `@Post` 注解，就可以实现 HTTP POST 请求了。
+
+```java
+@Post("/posts")
+org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);
+```
+
+该示例中的 `createPost` 是一个 HTTP POST 请求，请求路径是 `/posts`，请求体是 `Post` 对象。
+
+### @Body
+
+---
+
+在方法上添加 `@Body` 注解，就可以实现 HTTP POST 请求的请求体了。
+
+```java
+@Post("/posts")
+org.devlive.lightcall.example.Post createPost(@Body org.devlive.lightcall.example.Post post);
+```
+
+该示例构建的请求体是 `Post` 对象，请求路径是 `/posts`。

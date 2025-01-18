@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import org.devlive.lightcall.RequestContext;
 import org.devlive.lightcall.annotation.Post;
 import org.devlive.lightcall.error.ErrorHandler;
@@ -44,7 +43,7 @@ public class PostProcessor
     {
         return context.getRequestBuilder()
                 .url(url)
-                .post(RequestBody.create(null, ""))
+                .post(context.getBody())
                 .build();
     }
 }
