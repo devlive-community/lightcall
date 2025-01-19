@@ -640,68 +640,16 @@
             .addInterceptor(new LoggingInterceptor());</code></div>
         <div class="space-y-4"></div>
     
-        <div class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-2xl [&_span]:sm:!text-3xl">
-            <div id="zi-ding-yi-lan-jie-qi" class="inline-flex items-center">
-        <span class="text-base text-gray-700 leading-7 my-2">自定义拦截器</span>
-    </div>
-        </div>
-    
-        <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
+        <span class="text-base text-gray-700 leading-7 my-2">默认提供了</span>
     
         <div class="space-y-4"></div>
     
-        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
-        
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
-           </div>
-                   
-            <div class="w-full px-5 py-3">
-                <div class="text-sm text-blue-700">
-                    
-        <span class="text-base text-gray-700 leading-7 my-2">只需要实现 </span>
+        <ul class="my-4 pl-4 list-inside list-disc">
+            <li class="mb-2 text-gray-700 leading-relaxed hover:text-gray-900 pl-8 -indent-8">
+        <span class="text-base text-gray-700 leading-7 my-2">LoggingInterceptor</span>
+    </li>
+        </ul>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">Interceptor</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 接口，然后实现 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">beforeRequest</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 和 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">afterResponse</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 方法即可</span>
-    
-                </div>
-            </div>
-        </div>
-    
-        <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">package org.devlive.lightcall.example.interceptor;
-
-import okhttp3.Request;
-import okhttp3.Response;
-import org.devlive.lightcall.interceptor.Interceptor;
-
-public class LoggingInterceptor
-        implements Interceptor
-{
-    @Override
-    public Request beforeRequest(Request request)
-    {
-        System.out.println("Sending request: " + request.url());
-        return request;
-    }
-
-    @Override
-    public Response afterResponse(Response response)
-    {
-        System.out.println("Received response: " + response.code());
-        return response;
-    }
-}</code></div>
         </div>
     </div>
 </div>
@@ -724,17 +672,6 @@ public class LoggingInterceptor
                                        data-slug="yong-fa">
                                         
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
-    
-                                    </a>
-                                </div>
-                                
-                            
-                                <div class="pl-4">
-                                    <a href="#zi-ding-yi-lan-jie-qi"
-                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="zi-ding-yi-lan-jie-qi">
-                                        
-        <span class="text-base text-gray-700 leading-7 my-2">自定义拦截器</span>
     
                                     </a>
                                 </div>
@@ -776,17 +713,6 @@ public class LoggingInterceptor
                                        data-slug="yong-fa">
                                         
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
-    
-                                    </a>
-                                </div>
-                                
-                            
-                                <div class="pl-4">
-                                    <a href="#zi-ding-yi-lan-jie-qi"
-                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="zi-ding-yi-lan-jie-qi">
-                                        
-        <span class="text-base text-gray-700 leading-7 my-2">自定义拦截器</span>
     
                                     </a>
                                 </div>

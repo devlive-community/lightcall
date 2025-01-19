@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error - LightCall</title>
+    <title>自定义请求处理器 - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -93,7 +93,7 @@
                             <a href="/getting-started/get-started.html"
                                class="inline-flex items-center rounded-lg justify-center px-4 py-3
                                       text-sm font-medium leading-none dark:text-white
-                                      hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40">
+                                      text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium">
                                 开始使用
                             </a>
                         </li>
@@ -102,7 +102,7 @@
                             <a href="/usage/interceptor.html"
                                class="inline-flex items-center rounded-lg justify-center px-4 py-3
                                       text-sm font-medium leading-none dark:text-white
-                                      text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium">
+                                      hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40">
                                 文档
                             </a>
                         </li>
@@ -216,13 +216,13 @@
                 
                     <a href="/getting-started/get-started.html"
                        class="block px-3 py-2 rounded-md text-base font-medium
-                              text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                              text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20">
                         开始使用
                     </a>
                 
                     <a href="/usage/interceptor.html"
                        class="block px-3 py-2 rounded-md text-base font-medium
-                              text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20">
+                              text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
                         文档
                     </a>
                 
@@ -387,7 +387,7 @@
             <ul class="space-y-1.5">
                 
                     <li class="relative">
-                        <a href="/usage/interceptor.html"
+                        <a href="/getting-started/get-started.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
                                         hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
@@ -395,7 +395,7 @@
 
                                 
 
-                                <span class="flex-grow text-sm sm:text-base">Interceptor</span>
+                                <span class="flex-grow text-sm sm:text-base">开始使用</span>
 
                                 
                             </div>
@@ -405,7 +405,43 @@
                     </li>
                 
                     <li class="relative">
-                        <a href="/usage/error.html"
+                        <a href="/getting-started/interceptor.html"
+                           class="group block">
+                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                       rounded-md transition-all duration-200 ease-in-out">
+
+                                
+
+                                <span class="flex-grow text-sm sm:text-base">自定义拦截器</span>
+
+                                
+                            </div>
+                        </a>
+
+                        
+                    </li>
+                
+                    <li class="relative">
+                        <a href="/getting-started/error.html"
+                           class="group block">
+                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                       rounded-md transition-all duration-200 ease-in-out">
+
+                                
+
+                                <span class="flex-grow text-sm sm:text-base">自定义错误处理器</span>
+
+                                
+                            </div>
+                        </a>
+
+                        
+                    </li>
+                
+                    <li class="relative">
+                        <a href="/getting-started/processor.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
                                         text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
@@ -413,133 +449,7 @@
 
                                 
 
-                                <span class="flex-grow text-sm sm:text-base">Error</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/header.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Header</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/get.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Get</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/post.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Post</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/put.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Put</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/delete.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Delete</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/patch.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Patch</span>
-
-                                
-                            </div>
-                        </a>
-
-                        
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/usage/options.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">Options</span>
+                                <span class="flex-grow text-sm sm:text-base">自定义请求处理器</span>
 
                                 
                             </div>
@@ -569,7 +479,7 @@
         <div class="mb-3">
             
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-3xl">
-                    Error
+                    自定义请求处理器
                 </h1>
                 
             
@@ -583,7 +493,7 @@
             
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持错误处理。</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 为开发者提供了一个强大的请求处理器机制，可以用于处理和修改请求的数据。可以自定义请求处理器，以便更好地适应不同的业务需求。</span>
     
         <div class="space-y-4"></div>
     
@@ -597,11 +507,11 @@
             <div class="w-full px-5 py-3">
                 <div class="text-sm text-blue-700">
                     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持多个错误处理规则，用户可以通过 </span>
+        <span class="text-base text-gray-700 leading-7 my-2">只需要实现 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">addErrorHandler</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">AbstractMethodProcessor</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加错误处理规则。</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 抽象类，然后实现相应的方法即可。</span>
     
                 </div>
             </div>
@@ -609,51 +519,111 @@
     
         <div class="space-y-4"></div>
     
-        <div class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-2xl [&_span]:sm:!text-3xl">
-            <div id="yong-fa" class="inline-flex items-center">
-        <span class="text-base text-gray-700 leading-7 my-2">用法</span>
+        <span class="text-base text-gray-700 leading-7 my-2">我们以 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">OptionsProcessor</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 为例，实现一个自定义的请求处理器，用于处理 HTTP Options 请求。</span>
+    
+        <div class="space-y-4"></div>
+    
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="tian-jia-zhu-jie" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">添加注解</span>
     </div>
         </div>
     
         <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
     
         <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">package org.devlive.lightcall.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Documented
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Options
+{
+    String value() default "";
+}</code></div>
+        <div class="space-y-4"></div>
     
-        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
-        
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
-           </div>
-                   
-            <div class="w-full px-5 py-3">
-                <div class="text-sm text-blue-700">
-                    
-        <span class="text-base text-gray-700 leading-7 my-2">只需要在初始化配置的时候使用 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">addErrorHandler</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加错误处理规则即可</span>
-    
-                </div>
-            </div>
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="shi-xian-chu-li-qi" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">实现处理器</span>
+    </div>
         </div>
     
+        <hr class="my-4 h-0.5 border-0 bg-gray-200"/>
+    
         <div class="space-y-4"></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">package org.devlive.lightcall.processor;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.devlive.lightcall.RequestContext;
+import org.devlive.lightcall.annotation.Options;
+import org.devlive.lightcall.error.ErrorHandler;
+import org.devlive.lightcall.interceptor.Interceptor;
+
+import java.util.List;
+
+@Slf4j
+public class OptionsProcessor
+        extends AbstractMethodProcessor&lt;Options&gt;
+{
+    private OptionsProcessor(OkHttpClient client, ObjectMapper objectMapper, List&lt;Interceptor&gt; interceptors, List&lt;ErrorHandler&gt; errorHandlers)
+    {
+        super(client, objectMapper, interceptors, errorHandlers);
+    }
+
+    public static OptionsProcessor create(OkHttpClient client, ObjectMapper objectMapper, List&lt;Interceptor&gt; interceptors, List&lt;ErrorHandler&gt; errorHandlers)
+    {
+        return new OptionsProcessor(client, objectMapper, interceptors, errorHandlers);
+    }
+
+    @Override
+    public Class&lt;Options&gt; getAnnotationType()
+    {
+        return Options.class;
+    }
+
+    @Override
+    protected String getPath(Options annotation)
+    {
+        return annotation.value();
+    }
+
+    @Override
+    protected Request buildRequest(HttpUrl url, RequestContext context)
+    {
+        if (context.getBody() != null) {
+            log.warn("Body is not allowed for OPTIONS method");
+        }
+
+        return context.getRequestBuilder()
+                .url(url)
+                .method("OPTIONS", null)
+                .build();
+    }
+}</code></div>
+        <div class="space-y-4"></div>
+    
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="zhu-ce-chu-li-qi" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">注册处理器</span>
+    </div>
+        </div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com")
-            .addErrorHandler(new DefaultErrorHandler());</code></div>
-        <div class="space-y-4"></div>
-    
-        <span class="text-base text-gray-700 leading-7 my-2">默认提供了</span>
-    
-        <div class="space-y-4"></div>
-    
-        <ul class="my-4 pl-4 list-inside list-disc">
-            <li class="mb-2 text-gray-700 leading-relaxed hover:text-gray-900 pl-8 -indent-8">
-        <span class="text-base text-gray-700 leading-7 my-2">DefaultErrorHandler</span>
-    </li>
-        </ul>
-    
+        .addProcessor(OptionsProcessor.class);</code></div>
         </div>
     </div>
 </div>
@@ -670,12 +640,34 @@
                         
                         
                             
-                                <div class="pl-4">
-                                    <a href="#yong-fa"
+                                <div class="pl-8">
+                                    <a href="#tian-jia-zhu-jie"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="yong-fa">
+                                       data-slug="tian-jia-zhu-jie">
                                         
-        <span class="text-base text-gray-700 leading-7 my-2">用法</span>
+        <span class="text-base text-gray-700 leading-7 my-2">添加注解</span>
+    
+                                    </a>
+                                </div>
+                                
+                            
+                                <div class="pl-8">
+                                    <a href="#shi-xian-chu-li-qi"
+                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                                       data-slug="shi-xian-chu-li-qi">
+                                        
+        <span class="text-base text-gray-700 leading-7 my-2">实现处理器</span>
+    
+                                    </a>
+                                </div>
+                                
+                            
+                                <div class="pl-8">
+                                    <a href="#zhu-ce-chu-li-qi"
+                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                                       data-slug="zhu-ce-chu-li-qi">
+                                        
+        <span class="text-base text-gray-700 leading-7 my-2">注册处理器</span>
     
                                     </a>
                                 </div>
@@ -711,12 +703,34 @@
                 <nav class="overflow-y-auto max-h-[60vh] space-y-1">
                     
                             
-                                <div class="pl-4">
-                                    <a href="#yong-fa"
+                                <div class="pl-8">
+                                    <a href="#tian-jia-zhu-jie"
                                        class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
-                                       data-slug="yong-fa">
+                                       data-slug="tian-jia-zhu-jie">
                                         
-        <span class="text-base text-gray-700 leading-7 my-2">用法</span>
+        <span class="text-base text-gray-700 leading-7 my-2">添加注解</span>
+    
+                                    </a>
+                                </div>
+                                
+                            
+                                <div class="pl-8">
+                                    <a href="#shi-xian-chu-li-qi"
+                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                                       data-slug="shi-xian-chu-li-qi">
+                                        
+        <span class="text-base text-gray-700 leading-7 my-2">实现处理器</span>
+    
+                                    </a>
+                                </div>
+                                
+                            
+                                <div class="pl-8">
+                                    <a href="#zhu-ce-chu-li-qi"
+                                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                                       data-slug="zhu-ce-chu-li-qi">
+                                        
+        <span class="text-base text-gray-700 leading-7 my-2">注册处理器</span>
     
                                     </a>
                                 </div>
