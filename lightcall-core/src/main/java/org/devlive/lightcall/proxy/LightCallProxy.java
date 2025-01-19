@@ -7,6 +7,7 @@ import org.devlive.lightcall.RequestContext;
 import org.devlive.lightcall.config.LightCallConfig;
 import org.devlive.lightcall.processor.DeleteProcessor;
 import org.devlive.lightcall.processor.GetProcessor;
+import org.devlive.lightcall.processor.HeadProcessor;
 import org.devlive.lightcall.processor.MethodProcessor;
 import org.devlive.lightcall.processor.OptionsProcessor;
 import org.devlive.lightcall.processor.PatchProcessor;
@@ -51,6 +52,7 @@ public class LightCallProxy
         registerProcessor(DeleteProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(PatchProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(OptionsProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(HeadProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
 
         // 注册自定义处理器
         for (Class<? extends MethodProcessor<?>> processorClass : config.getProcessorClasses()) {

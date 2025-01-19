@@ -40,3 +40,4 @@ nav:
     - /usage/delete
     - /usage/patch
     - /usage/options
+    - /usage/head

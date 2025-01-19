@@ -109,6 +109,11 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
             if (response != null) {
                 response.close();
             }
+
+            if (client != null) {
+                client.dispatcher().executorService().shutdown();
+                client.connectionPool().evictAll();
+            }
         }
     }
 
