@@ -7,11 +7,15 @@
     <groupId>io.github.yourname</groupId>
     <artifactId>lightcall</artifactId>
     <version>2025.1.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>LightCall</name>
+    <name>lightcall</name>
     <description>LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。</description>
     <url>https://github.com/devlive-community/lightcall</url>
+
+    <modules>
+        <module>lightcall-core</module>
+    </modules>
 
     <licenses>
         <license>

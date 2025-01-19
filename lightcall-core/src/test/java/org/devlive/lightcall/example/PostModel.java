@@ -2,8 +2,11 @@ package org.devlive.lightcall.example;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 public class PostModel
+        implements Serializable
 {
     private String body;
     private String title;
