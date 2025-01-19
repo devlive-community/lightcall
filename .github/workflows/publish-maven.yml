@@ -1,29 +1,33 @@
-name: Publish via Maven Central
-
+name: Publish to Maven Central
 on:
   release:
-    types: [ published ]
+    types: [created]
 
 jobs:
-  publish-maven-central:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install Java and Maven
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '8'
           distribution: 'temurin'
+          cache: 'maven'
+          server-id: central
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_PASSWORD
 
-      - name: Publish to the Maven Central Repository
-        uses: samuelmeuli/action-maven-publish@v1
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
         with:
-          maven_profiles: 'deploy'
-          maven_goals_phases: 'clean deploy'
-          maven_args: '-DskipTests'
           gpg_private_key: ${{ secrets.GPG_SECRET }}
-          gpg_passphrase: ${{ secrets.GPG_PASSWORD }}
-          nexus_username: ${{ secrets.OSSRH_USERNAME }}
-          nexus_password: ${{ secrets.OSSRH_TOKEN }}
+          passphrase: ${{ secrets.GPG_PASSWORD }}
+
+      - name: Build and Publish
+        env:
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+        run: |
+          ./mvnw -B clean deploy
