@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class LightCallProxy
-        implements InvocationHandler
+        implements InvocationHandler, AutoCloseable
 {
     private final OkHttpClient client;
     private final LightCallConfig config;
@@ -123,5 +123,14 @@ public class LightCallProxy
                         param.getName(),
                         args[Arrays.asList(parameters).indexOf(param)]))
                 .collect(Collectors.joining(", "));
+    }
+
+    @Override
+    public void close()
+    {
+        if (client != null) {
+            client.dispatcher().executorService().shutdown();
+            client.connectionPool().evictAll();
+        }
     }
 }
