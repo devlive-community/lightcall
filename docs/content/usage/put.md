@@ -19,23 +19,23 @@ public interface PutService
 
 ### 用法
 
-在方法上添加 `@Post` 注解，就可以实现 HTTP POST 请求了。
+在方法上添加 `@Put` 注解，就可以实现 HTTP Put 请求了。
 
 ```java
 @Put("/posts/{id}")
 PostModel putPost(@PathVariable("id") Long id, @Body PostModel post);
 ```
 
-该示例中的 `putPost` 是一个 HTTP POST 请求，请求路径是 `/posts`，请求体是 `PostModel` 对象。
+该示例中的 `putPost` 是一个 HTTP Put 请求，请求路径是 `/posts`，请求体是 `PostModel` 对象。
 
 ### @Body
 
 ---
 
-在方法上添加 `@Body` 注解，就可以实现 HTTP POST 请求的请求体了。
+在方法上添加 `@Body` 注解，就可以实现 HTTP Put 请求的请求体了。
 
 ```java
-@Post("/posts")
+@Put("/posts")
 PostModel putPost(@Body PostModel post);
 ```
 

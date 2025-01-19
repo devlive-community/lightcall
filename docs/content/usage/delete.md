@@ -22,7 +22,7 @@ public interface DeleteService
 在方法上添加 `@Delete` 注解，就可以实现 HTTP DELETE 请求了。
 
 ```java
-@Put("/posts/{id}")
+@Delete("/posts/{id}")
 PostModel deletePost(@PathVariable("id") Long id);
 ```
 
@@ -35,7 +35,7 @@ PostModel deletePost(@PathVariable("id") Long id);
 在方法上添加 `@Body` 注解，就可以实现 HTTP DELETE 请求的请求体了。
 
 ```java
-@Post("/posts")
+@Delete("/posts")
 PostModel deletePost(@Body PostModel post);
 ```
 
