@@ -90,16 +90,7 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
         try {
             response = client.newCall(interceptedRequest).execute();
             response = applyAfterResponseInterceptors(response);
-
-            if (response.body() == null) {
-                log.warn("Response body is null for URL: {}", request.url());
-                return null;
-            }
-
-            String responseBody = response.body().string();
-            response.close();
-
-            return objectMapper.readValue(responseBody, returnType);
+            return handleResponse(response, returnType);
         }
         catch (Exception e) {
             exception = e;
@@ -108,7 +99,7 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
                 if (handler.canHandle(interceptedRequest, response, exception)) {
                     Object result = handler.handle(interceptedRequest, response, exception, returnType);
                     if (result != null) {
-                        return (T) result;
+                        return returnType.cast(result);
                     }
                 }
             }
@@ -153,5 +144,59 @@ public abstract class AbstractMethodProcessor<A extends Annotation>
             }
         }
         return interceptedResponse;
+    }
+
+    /**
+     * 处理 HTTP 响应
+     *
+     * @param response HTTP 响应
+     * @param returnType 返回类型
+     * @return 处理后的结果
+     */
+    protected <T> T handleResponse(Response response, Class<T> returnType)
+            throws Exception
+    {
+        // 默认实现
+        if (response.body() == null) {
+            log.debug("Response body is null");
+            return handleEmptyResponse(returnType);
+        }
+
+        String responseBody = response.body().string();
+        if (responseBody.trim().isEmpty()) {
+            return handleEmptyResponse(returnType);
+        }
+
+        return parseResponse(responseBody, returnType);
+    }
+
+    /**
+     * 处理空响应
+     *
+     * @param returnType 返回类型
+     * @return 处理后的结果
+     */
+    protected <T> T handleEmptyResponse(Class<T> returnType)
+    {
+        if (void.class.equals(returnType)) {
+            return null;
+        }
+        if (String.class.equals(returnType)) {
+            return returnType.cast("");
+        }
+        return null;
+    }
+
+    /**
+     * 解析响应体
+     *
+     * @param responseBody 响应体字符串
+     * @param returnType 返回类型
+     * @return 解析后的结果
+     */
+    protected <T> T parseResponse(String responseBody, Class<T> returnType)
+            throws Exception
+    {
+        return objectMapper.readValue(responseBody, returnType);
     }
 }

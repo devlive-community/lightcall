@@ -36,3 +36,4 @@ nav:
     - /usage/put
     - /usage/delete
     - /usage/patch
+    - /usage/options

@@ -8,6 +8,7 @@ import org.devlive.lightcall.config.LightCallConfig;
 import org.devlive.lightcall.processor.DeleteProcessor;
 import org.devlive.lightcall.processor.GetProcessor;
 import org.devlive.lightcall.processor.MethodProcessor;
+import org.devlive.lightcall.processor.OptionsProcessor;
 import org.devlive.lightcall.processor.PatchProcessor;
 import org.devlive.lightcall.processor.PostProcessor;
 import org.devlive.lightcall.processor.PutProcessor;
@@ -48,6 +49,7 @@ public class LightCallProxy
         registerProcessor(PutProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(DeleteProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(PatchProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(OptionsProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
     }
 
     public <A extends Annotation> void registerProcessor(MethodProcessor<A> processor)
