@@ -4,6 +4,7 @@ import lombok.Data;
 import org.devlive.lightcall.error.DefaultErrorHandler;
 import org.devlive.lightcall.error.ErrorHandler;
 import org.devlive.lightcall.interceptor.Interceptor;
+import org.devlive.lightcall.processor.MethodProcessor;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,6 +18,7 @@ public class LightCallConfig
     private int readTimeout;
     private List<Interceptor> interceptors = new ArrayList<>();
     private List<ErrorHandler> errorHandlers = new ArrayList<>();
+    private final List<Class<? extends MethodProcessor<?>>> processorClasses = new ArrayList<>();
 
     private LightCallConfig(String baseUrl)
     {
@@ -62,6 +64,12 @@ public class LightCallConfig
     {
         this.errorHandlers.add(errorHandler);
         this.getErrorHandlers().sort(Comparator.comparingInt(ErrorHandler::order));
+        return this;
+    }
+
+    public LightCallConfig addProcessor(Class<? extends MethodProcessor<?>> processorClass)
+    {
+        this.processorClasses.add(processorClass);
         return this;
     }
 }

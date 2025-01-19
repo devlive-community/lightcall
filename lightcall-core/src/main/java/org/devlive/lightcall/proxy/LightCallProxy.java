@@ -11,6 +11,7 @@ import org.devlive.lightcall.processor.MethodProcessor;
 import org.devlive.lightcall.processor.OptionsProcessor;
 import org.devlive.lightcall.processor.PatchProcessor;
 import org.devlive.lightcall.processor.PostProcessor;
+import org.devlive.lightcall.processor.ProcessorFactory;
 import org.devlive.lightcall.processor.PutProcessor;
 
 import java.lang.annotation.Annotation;
@@ -50,6 +51,18 @@ public class LightCallProxy
         registerProcessor(DeleteProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(PatchProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
         registerProcessor(OptionsProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
+
+        // 注册自定义处理器
+        for (Class<? extends MethodProcessor<?>> processorClass : config.getProcessorClasses()) {
+            MethodProcessor<?> processor = ProcessorFactory.createProcessor(
+                    processorClass,
+                    client,
+                    objectMapper,
+                    config.getInterceptors(),
+                    config.getErrorHandlers()
+            );
+            registerProcessor(processor);
+        }
     }
 
     public <A extends Annotation> void registerProcessor(MethodProcessor<A> processor)
