@@ -41,3 +41,5 @@ nav:
     - /usage/patch
     - /usage/options
     - /usage/head
+  - 发布日志:
+    - /release/latest

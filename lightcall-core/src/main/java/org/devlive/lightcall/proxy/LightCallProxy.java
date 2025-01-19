@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 public class LightCallProxy
         implements InvocationHandler, AutoCloseable
 {
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper(); // 静态共享
     private final OkHttpClient client;
     private final LightCallConfig config;
-    private final ObjectMapper objectMapper;
     private final Map<Class<? extends Annotation>, MethodProcessor<?>> processors;
 
     public LightCallProxy(LightCallConfig config)
@@ -42,24 +42,23 @@ public class LightCallProxy
                 .connectTimeout(config.getConnectTimeout(), TimeUnit.MILLISECONDS)
                 .readTimeout(config.getReadTimeout(), TimeUnit.MILLISECONDS)
                 .build();
-        this.objectMapper = new ObjectMapper();
         this.processors = new HashMap<>();
 
         // 注册默认的处理器
-        registerProcessor(GetProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(PostProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(PutProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(DeleteProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(PatchProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(OptionsProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
-        registerProcessor(HeadProcessor.create(client, objectMapper, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(GetProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(PostProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(PutProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(DeleteProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(PatchProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(OptionsProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
+        registerProcessor(HeadProcessor.create(client, OBJECT_MAPPER, config.getInterceptors(), config.getErrorHandlers()));
 
         // 注册自定义处理器
         for (Class<? extends MethodProcessor<?>> processorClass : config.getProcessorClasses()) {
             MethodProcessor<?> processor = ProcessorFactory.createProcessor(
                     processorClass,
                     client,
-                    objectMapper,
+                    OBJECT_MAPPER,
                     config.getInterceptors(),
                     config.getErrorHandlers()
             );
