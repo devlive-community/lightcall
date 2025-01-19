@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete - LightCall</title>
+    <title>Options - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -498,7 +498,7 @@
                         <a href="/usage/delete.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -534,7 +534,7 @@
                         <a href="/usage/options.html"
                            class="group block">
                             <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
                                        rounded-md transition-all duration-200 ease-in-out">
 
                                 
@@ -569,7 +569,7 @@
         <div class="mb-3">
             
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-3xl">
-                    Delete
+                    Options
                 </h1>
                 
             
@@ -583,7 +583,7 @@
             
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 提供了 HTTP Delete 请求的支持。</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 提供了 HTTP Options 请求的支持。</span>
     
         <div class="space-y-4"></div>
     
@@ -599,11 +599,11 @@
                     
         <span class="text-base text-gray-700 leading-7 my-2">LightCall 需要在方法上添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Delete</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Options</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解来标识该方法是一个 HTTP DELETE 请求。并且添加 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解来标识该方法是一个 HTTP Options 请求。并且添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Delete</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Options</code>
     
         <span class="text-base text-gray-700 leading-7 my-2"> 注解的类必须是一个接口。</span>
     
@@ -614,14 +614,14 @@
         <div class="space-y-4"></div>
     <span class="inline-block my-1 mx-auto">我们使用的模拟数据是，他的代码可以在 
         <a class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 cursor-pointer"
-           href="https://github.com/devlive-community/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/delete/DeleteService.java"
+           href="https://github.com/devlive-community/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/Options/OptionsService.java"
            target="_blank"
-           title="DeleteService">
+           title="OptionsService">
             这里
         </a>
      查看。</span>
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">public interface DeleteService
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">public interface OptionsService
 {}</code></div>
         <div class="space-y-4"></div>
     
@@ -633,20 +633,20 @@
     
         <span class="text-base text-gray-700 leading-7 my-2">在方法上添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Delete</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Options</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP DELETE 请求了。</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP Options 请求了。</span>
     
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Delete("/posts/{id}")
-PostModel deletePost(@PathVariable("id") Long id);</code></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Options("/posts/{id}")
+PostModel apply(@PathVariable("id") Long id);</code></div>
         <div class="space-y-4"></div>
     
         <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">deletePost</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">apply</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP POST 请求，请求路径是 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP Options 请求，请求路径是 </span>
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">/posts</code>
     
@@ -668,11 +668,11 @@ PostModel deletePost(@PathVariable("id") Long id);</code></div>
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Body</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP DELETE 请求的请求体了。</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP Options 请求的请求体了。</span>
     
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Delete("/posts")
-PostModel deletePost(@Body PostModel post);</code></div>
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Options("/posts")
+PostModel apply(@PathVariable("id") Long id, @Body PostModel post);</code></div>
         <div class="space-y-4"></div>
     
         <span class="text-base text-gray-700 leading-7 my-2">该示例构建的请求体是 </span>
