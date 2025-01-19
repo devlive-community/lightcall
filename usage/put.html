@@ -512,6 +512,24 @@
                         
                     </li>
                 
+                    <li class="relative">
+                        <a href="/usage/patch.html"
+                           class="group block">
+                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                       rounded-md transition-all duration-200 ease-in-out">
+
+                                
+
+                                <span class="flex-grow text-sm sm:text-base">Patch</span>
+
+                                
+                            </div>
+                        </a>
+
+                        
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -597,9 +615,9 @@
     
         <span class="text-base text-gray-700 leading-7 my-2">在方法上添加 </span>
     
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Post</code>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Put</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP POST 请求了。</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP Put 请求了。</span>
     
         <div class="space-y-4"></div>
     <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Put("/posts/{id}")
@@ -610,7 +628,7 @@ PostModel putPost(@PathVariable("id") Long id, @Body PostModel post);</code></di
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">putPost</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP POST 请求，请求路径是 </span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 是一个 HTTP Put 请求，请求路径是 </span>
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">/posts</code>
     
@@ -636,10 +654,10 @@ PostModel putPost(@PathVariable("id") Long id, @Body PostModel post);</code></di
     
         <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline break-words whitespace-pre-wrap">@Body</code>
     
-        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP POST 请求的请求体了。</span>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现 HTTP Put 请求的请求体了。</span>
     
         <div class="space-y-4"></div>
-    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Post("/posts")
+    <div class="block w-full bg-gray-100 text-gray-900 my-3 px-3 py-2.5 rounded font-mono leading-normal overflow-x-auto" style="white-space: pre;"><code class="language-java">@Put("/posts")
 PostModel putPost(@Body PostModel post);</code></div>
         <div class="space-y-4"></div>
     
