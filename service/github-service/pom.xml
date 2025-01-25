@@ -5,9 +5,9 @@
         <groupId>org.devlive.lightcall</groupId>
         <artifactId>lightcall</artifactId>
         <version>2025.1.1</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <name>lightcall-core</name>
-    <artifactId>lightcall-core</artifactId>
-    <description>LightCall 的核心库</description>
+    <artifactId>github-service</artifactId>
+    <name></name>
 </project>
