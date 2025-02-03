@@ -58,7 +58,7 @@ public class PartHandler
 
         RequestBody fileBody = RequestBody.create(
                 file,
-                MediaType.parse("application/octet-stream")
+                MediaType.parse(partAnnotation.mime())
         );
 
         multipartBuilder.addFormDataPart(

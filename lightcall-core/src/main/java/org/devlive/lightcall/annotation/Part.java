@@ -15,4 +15,6 @@ public @interface Part
      * 文件参数的名称
      */
     String value();
+
+    String mime() default "application/octet-stream";
 }

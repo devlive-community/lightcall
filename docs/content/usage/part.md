@@ -46,4 +46,16 @@ String apply(@Part("image") File image);
     文件上传请求会自动设置 `Content-Type` 为 `multipart/form-data`，并将文件作为表单的一部分上传。
 
 !!!
+
+### `mime` 类型
+
+---
+
+`@Part` 注解支持 `mime` 参数，用于指定上传文件的 MIME 类型，默认值为 `application/octet-stream`。
+
+```java
+@Post("/upload")
+String apply(@Part(value = "image", mime = "image/jpeg") File image);
 ```
+
+该示例中的 `apply` 方法用于上传图片文件，参数 `image` 表示要上传的图片文件，请求路径是 `/upload`，文件的 MIME 类型是 `image/jpeg`。
