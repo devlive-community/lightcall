@@ -13,10 +13,14 @@
         (function () {
             document.addEventListener('click', function (e) {
                 var link = e.target.closest('a');
-                if (!link) return;
+                if (!link) {
+                    return;
+                }
 
                 const href = link.getAttribute('href');
-                if (!href || href.startsWith('http') || href.startsWith('#')) return;
+                if (!href || href.startsWith('http') || href.startsWith('#')) {
+                    return;
+                }
 
                 e.preventDefault();
 
@@ -44,6 +48,15 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Prism.js 语法高亮样式 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-ghcolors.css" rel="stylesheet"/>
+
+    <!-- 统计代码 -->
+    
+
+    <!-- Mermaid 图表 -->
+    
 </head>
 
 <body class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -488,16 +501,16 @@
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                     
                         <div class="flex flex-col gap-y-3 border-l border-white/10 pl-6">
-                            <dt class="text-sm leading-6 text-gray-300">活跃用户</dt>
+                            <dt class="text-sm leading-6 text-gray-300">Github Stars</dt>
                             <dd class="order-first text-3xl font-semibold tracking-tight text-white">
-                                1+
+                                5+
                             </dd>
                         </div>
                     
                         <div class="flex flex-col gap-y-3 border-l border-white/10 pl-6">
-                            <dt class="text-sm leading-6 text-gray-300">服务客户</dt>
+                            <dt class="text-sm leading-6 text-gray-300">版本发布</dt>
                             <dd class="order-first text-3xl font-semibold tracking-tight text-white">
-                                1+
+                                2
                             </dd>
                         </div>
                     
@@ -619,7 +632,7 @@
         <!-- 底部版权和社交链接 -->
         <div class="flex flex-col items-center sm:flex-row sm:items-center justify-between gap-4">
             <span class="text-sm text-gray-500 dark:text-gray-400">
-                © 2024 PageForge All Rights Reserved. 使用 ❤️ PageForge 构建
+                © 2024 PageForge All Rights Reserved. 使用 ❤️ <a href="https://pageforge.devlive.org" class="hover:text-blue-600" target="_blank">PageForge</a> 构建
             </span>
 
             
@@ -649,6 +662,9 @@
 </footer>
     
 </div>
+
+<!-- 返回顶部按钮 -->
+
 
 <!-- 遮罩层 - 移动端菜单打开时显示 -->
 
