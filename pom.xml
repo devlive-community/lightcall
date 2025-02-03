@@ -15,6 +15,7 @@
 
     <modules>
         <module>lightcall-core</module>
+        <module>service/github-service</module>
     </modules>
 
     <licenses>
@@ -36,7 +37,7 @@
     <scm>
         <connection>scm:git:git://github.com/devlive-community/lightcall.git</connection>
         <developerConnection>scm:git:ssh://github.com:devlive-community/lightcall.git</developerConnection>
-        <url>https://github.com/devlive-community/lightcall/tree/dev</url>
+        <url>https://github.com/devlive-community/lightcall</url>
     </scm>
 
     <properties>
@@ -169,7 +170,6 @@
                 <version>0.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>central</serverId>
                     <tokenAuth>true</tokenAuth>
                 </configuration>
             </plugin>

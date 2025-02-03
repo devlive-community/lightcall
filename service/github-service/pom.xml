@@ -9,5 +9,5 @@
     </parent>
 
     <artifactId>github-service</artifactId>
-    <name></name>
+    <description>Service - Github</description>
 </project>

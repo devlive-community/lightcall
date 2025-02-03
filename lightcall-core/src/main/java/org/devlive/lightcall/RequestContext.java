@@ -53,10 +53,16 @@ public class RequestContext
             throw new IllegalArgumentException("MediaType cannot be null");
         }
         this.mediaType = mediaType;
-        this.body = RequestBody.create(
-                objectMapper.writeValueAsString(body).getBytes(StandardCharsets.UTF_8),
-                mediaType
-        );
+
+        if (body instanceof RequestBody) {
+            this.body = (RequestBody) body;
+        }
+        else {
+            this.body = RequestBody.create(
+                    objectMapper.writeValueAsString(body).getBytes(StandardCharsets.UTF_8),
+                    mediaType
+            );
+        }
     }
 
     public void setMediaType(MediaType mediaType)
