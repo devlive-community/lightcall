@@ -29,46 +29,51 @@ jobs:
       - name: Check Spotbugs
         run: ./mvnw spotbugs:check
 
-      # 添加单元测试步骤
+      # 执行所有模块的测试
       - name: Run Unit Tests
         run: ./mvnw -B test
 
-      # 生成测试覆盖率报告
-      - name: Generate Test Coverage Report
-        run: ./mvnw -B jacoco:report
-
-      - name: Build with Maven
-        run: ./mvnw -B clean package
-
-      # 使用 actions/test-reporter 展示测试结果
+      # 收集所有模块的测试报告
       - name: Publish Test Results
         uses: dorny/test-reporter@v1
         if: always()
         with:
           name: JUnit Tests (${{ matrix.java }})
-          path: target/surefire-reports/*.xml
+          path: '**/target/surefire-reports/TEST-*.xml'
           reporter: java-junit
-          fail-on-error: true
+          fail-on-error: false
 
+      - name: Build with Maven
+        run: ./mvnw -B clean package
+
+      # 上传所有模块的测试结果
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.java }}
-          path: target/surefire-reports/
+          path: |
+            **/target/surefire-reports/
+            **/target/site/surefire-report.html
+
+      # 收集所有模块的覆盖率报告
+      - name: Generate Test Coverage Report
+        run: ./mvnw -B jacoco:report
 
       - name: Upload Coverage Report
         if: matrix.java == '8'
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: target/site/jacoco/
+          path: |
+            **/target/site/jacoco/
+            **/target/site/jacoco/jacoco.xml
 
       - name: Report Coverage to Codecov
         if: matrix.java == '8'
         uses: codecov/codecov-action@v3
         with:
-          file: target/site/jacoco/jacoco.xml
+          files: '**/target/site/jacoco/jacoco.xml'
 
   dependency-check:
     runs-on: ubuntu-latest
@@ -90,4 +95,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path: target/dependency-check-report.html
+          path: '**/target/dependency-check-report.html'
