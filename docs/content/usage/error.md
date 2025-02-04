@@ -21,7 +21,7 @@ LightCall 支持错误处理。
 !!!
 
 ```java
-LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com")
+LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org")
             .addErrorHandler(new DefaultErrorHandler());
 ```
 

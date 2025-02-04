@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class PostServiceTest
 {
-    private final LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com");
+    private final LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org");
     private final PostService service = LightCall.create(PostService.class, config);
 
     @Test

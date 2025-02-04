@@ -41,7 +41,7 @@ public interface PostService
 ---
 
 ```java
-private final LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com");
+private final LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org");
 private final PostService service = LightCall.create(PostService.class, config);
 
 List<Post> posts = service.getPosts();

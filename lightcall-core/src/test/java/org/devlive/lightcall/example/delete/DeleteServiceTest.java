@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class DeleteServiceTest
 {
-    private final LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com");
+    private final LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org");
     private final DeleteService service = LightCall.create(DeleteService.class, config);
 
     @Test

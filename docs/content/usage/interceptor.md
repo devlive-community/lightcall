@@ -21,7 +21,7 @@ LightCall 支持拦截器，可以在请求和响应之前做一些操作
 !!!
 
 ```java
-LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com")
+LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org")
             .addInterceptor(new LoggingInterceptor());
 ```
 

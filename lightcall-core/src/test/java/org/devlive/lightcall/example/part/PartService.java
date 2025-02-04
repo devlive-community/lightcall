@@ -8,5 +8,5 @@ import java.io.File;
 public interface PartService
 {
     @Post("/upload")
-    String apply(@Part("file") File file);
+    Object apply(@Part("file") File file);
 }

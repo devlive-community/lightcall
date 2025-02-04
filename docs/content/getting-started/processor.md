@@ -97,6 +97,6 @@ public class OptionsProcessor
 ### 注册处理器
 
 ```java
-LightCallConfig config = LightCallConfig.create("https://jsonplaceholder.typicode.com")
+LightCallConfig config = LightCallConfig.create("http://mockaroo.devlive.org")
         .addProcessor(OptionsProcessor.class);
 ```
