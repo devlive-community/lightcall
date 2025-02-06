@@ -1,8 +1,13 @@
 site:
   title: LightCall
   description: LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。
+  keywords: LightCall,服务调用框架,声明式服务调用,声明式HTTP调用,Client
   logo: /assets/logo.svg
   favicon: assets/logo.svg
+  baseUrl: https://lightcall.devlive.org
+
+banner:
+  content: 💗 <a href="https://afdian.com/a/devlive-community" target="_blank">如果喜欢我们的软件，请点击这里支持我们</a> ❤️
 
 repo:
   owner: devlive-community
@@ -25,6 +30,22 @@ feature:
     enable: true
   backToTop:
     enable: true
+  sitemap:
+    enable: true
+  statistics:
+    enable: true
+    content: |
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5403546756695673"
+      crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+      style="display:block; text-align:center;"
+      data-ad-layout="in-article"
+      data-ad-format="fluid"
+      data-ad-client="ca-pub-5403546756695673"
+      data-ad-slot="7720669116"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 
 footer:
   copyright: © 2024 PageForge All Rights Reserved.
@@ -34,11 +55,11 @@ footer:
       href: https://github.com/devlive-community/lightcall
   links:
     - 开源项目:
-      - title: 开源数据中台
+      - title: 开源数据中台 DataCap
         href: https://github.com/devlive-community/datacap
-      - title: 开源 UI 框架
+      - title: 前端框架 View Shadcn UI
         href: https://github.com/devlive-community/view-shadcn-ui
-      - title: 开源网站构建工具
+      - title: 网站构建 PageForge
         href: https://github.com/devlive-community/pageforge
 
 nav:
@@ -59,5 +80,6 @@ nav:
     - /usage/options
     - /usage/head
     - /usage/part
+    - /usage/part-map
   - 发布日志:
     - /release/latest

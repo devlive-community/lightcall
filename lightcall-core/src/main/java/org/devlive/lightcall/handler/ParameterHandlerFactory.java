@@ -19,6 +19,7 @@ public class ParameterHandlerFactory
         handlers.add(HeaderHandler.create(context.getRequestBuilder(), method));
         handlers.add(BodyHandler.create(context));
         handlers.add(PartHandler.create(context));
+        handlers.add(PartMapHandler.create(context));
         return handlers;
     }
 }
