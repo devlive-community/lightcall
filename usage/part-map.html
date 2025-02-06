@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interceptor - LightCall</title>
+    <title>PartMap - LightCall</title>
     <!-- 基础 SEO meta 标签 -->
 <meta name="description" content="LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。">
 <meta name="keywords" content="LightCall,服务调用框架,声明式服务调用,声明式HTTP调用,Client">
 <meta name="author" content="PageForge">
 
-    <title>Interceptor - LightCall</title>
+    <title>PartMap - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -457,7 +457,7 @@ data-ad-slot="7720669116"></ins>
                        class="group block">
                         
                         <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
+                                hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
                                rounded-md transition-all duration-200 ease-in-out">
 
                             
@@ -732,7 +732,7 @@ data-ad-slot="7720669116"></ins>
                        class="group block">
                         
                         <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                                text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
                                rounded-md transition-all duration-200 ease-in-out">
 
                             
@@ -871,7 +871,7 @@ data-ad-slot="7720669116"></ins>
             
     <div class="flex items-center justify-between">
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-3xl">
-            Interceptor
+            PartMap
         </h1>
 
         <div class="flex items-center gap-4">
@@ -883,7 +883,7 @@ data-ad-slot="7720669116"></ins>
 
             <!-- 编辑源码 -->
             
-    <a href="https://github.com/devlive-community/lightcall/edit/dev-2025.1.1/docs/content/usage/interceptor.md"
+    <a href="https://github.com/devlive-community/lightcall/edit/dev-2025.1.1/docs/content/usage/part-map.md"
        target="_blank"
        rel="noopener noreferrer"
        class="text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
@@ -897,7 +897,7 @@ data-ad-slot="7720669116"></ins>
 
             <!-- 查看源码 -->
             
-    <a href="https://github.com/devlive-community/lightcall/blob/dev-2025.1.1/docs/content/usage/interceptor.md"
+    <a href="https://github.com/devlive-community/lightcall/blob/dev-2025.1.1/docs/content/usage/part-map.md"
        target="_blank"
        rel="noopener noreferrer"
        class="text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
@@ -919,57 +919,75 @@ data-ad-slot="7720669116"></ins>
             
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持拦截器，可以在请求和响应之前做一些操作</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 提供了文件上传的支持。</span>
     
         <div class="space-y-4"></div>
     
-        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
+        <div class="rounded-lg my-2 overflow-hidden border border-red-200">
         
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
+        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-red-50">
+               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+               <h3 class="text-sm font-medium text-gray-900 mb-2">注意</h3>
            </div>
                    
             <div class="w-full px-5 py-3">
-                <div class="text-sm text-blue-700">
+                <div class="text-sm text-red-700">
                     
-        <span class="text-base text-gray-700 leading-7 my-2">LightCall 支持多个拦截器，可以在请求和响应之前做一些操作。支持用户自定义拦截器。</span>
+        <span class="text-base text-gray-700 leading-7 my-2">LightCall 需要在参数上添加 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">@PartMap</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解来标识该参数是一个文件上传请求。并且添加 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">@PartMap</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 的类必须是一个接口。</span>
     
                 </div>
             </div>
         </div>
     
         <div class="space-y-4"></div>
+    <span class="inline-block my-1 mx-auto">我们使用的模拟数据是，他的代码可以在 
+        <a class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 cursor-pointer"
+           href="https://github.com/devlive-community/lightcall/blob/dev/src/test/java/org/devlive/lightcall/example/part/map/PartMapService.java"
+           target="_blank"
+           title="PartMapService">
+            这里
+        </a>
+     查看。</span><div class="!block !w-full !bg-gray-100 !dark:bg-gray-800 !dark:text-gray-300 !text-gray-900 !my-3 !rounded !font-mono !leading-normal !overflow-hidden !relative">
+            <div class="!absolute !right-12 !top-2 !text-sm !text-gray-500 !dark:text-gray-400 !bg-gray-100 !dark:bg-gray-800 !z-10">java</div>
+            
+        <button onclick="window.PageForge.CodeCopy.copy(this)" class="!absolute !right-2 !top-1 !p-1 !rounded !text-gray-400 hover:!text-blue-600 !dark:text-gray-500 hover:!text-blue-300 !transition-colors !duration-200 !z-10">
+            <svg class="copy-icon !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <svg class="check-icon !hidden !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        </button>
     
-        <div class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-2xl [&_span]:sm:!text-3xl">
+            <div class="!overflow-x-auto !flex">
+                
+                <div class="!flex-1">
+                    <pre class="!px-3 !py-2.5 !m-0"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">PartMapService</span>
+<span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-4"></div>
+    
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
             <div id="yong-fa" class="inline-flex items-center">
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
     </div>
         </div>
     
-        <hr class="my-4 h-0.5 border-0 bg-gray-200 dark:bg-gray-700"/>
+        <span class="text-base text-gray-700 leading-7 my-2">在参数上添加 </span>
     
-        <div class="space-y-4"></div>
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">@PartMap</code>
     
-        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
-        
-        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
-               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
-           </div>
-                   
-            <div class="w-full px-5 py-3">
-                <div class="text-sm text-blue-700">
-                    
-        <span class="text-base text-gray-700 leading-7 my-2">只需要在初始化配置的时候使用 </span>
-    
-        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">addInterceptor</code>
-    
-        <span class="text-base text-gray-700 leading-7 my-2"> 方法添加拦截器即可</span>
-    
-                </div>
-            </div>
-        </div>
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解，就可以实现文件上传请求了。</span>
     <div class="!block !w-full !bg-gray-100 !dark:bg-gray-800 !dark:text-gray-300 !text-gray-900 !my-3 !rounded !font-mono !leading-normal !overflow-hidden !relative">
             <div class="!absolute !right-12 !top-2 !text-sm !text-gray-500 !dark:text-gray-400 !bg-gray-100 !dark:bg-gray-800 !z-10">java</div>
             
@@ -985,26 +1003,176 @@ data-ad-slot="7720669116"></ins>
             <div class="!overflow-x-auto !flex">
                 
                 <div class="!flex-1">
-                    <pre class="!px-3 !py-2.5 !m-0"><code class="language-java"><span class="token class-name">LightCallConfig</span> config <span class="token operator">=</span> <span class="token class-name">LightCallConfig</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token string">"http://mockaroo.devlive.org"</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LoggingInterceptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                    <pre class="!px-3 !py-2.5 !m-0"><code class="language-java"><span class="token annotation punctuation">@Post</span><span class="token punctuation">(</span><span class="token string">"/upload/multiple"</span><span class="token punctuation">)</span>
+<span class="token class-name">Object</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PartMap</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"files"</span><span class="token punctuation">)</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">File</span><span class="token punctuation">></span></span> files<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                 </div>
             </div>
         </div>
         <div class="space-y-4"></div>
     
-        <span class="text-base text-gray-700 leading-7 my-2">默认提供了</span>
+        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">apply</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 是一个文件上传请求，参数 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">files</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 表示要上传的文件，</span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">"files"</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 是文件参数的名称。请求路径是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">/upload/multiple</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">。</span>
     
         <div class="space-y-4"></div>
     
-        <ul class="my-4 pl-4 list-inside list-disc">
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="wen-jian-lei-xing" class="inline-flex items-center">
+        <span class="text-base text-gray-700 leading-7 my-2">文件类型</span>
+    </div>
+        </div>
+    
+        <hr class="my-4 h-0.5 border-0 bg-gray-200 dark:bg-gray-700"/>
+    
+        <div class="space-y-4"></div>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">@PartMap</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解支持 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">java.io.File</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 类型的参数，用于上传本地文件。</span>
+    <div class="!block !w-full !bg-gray-100 !dark:bg-gray-800 !dark:text-gray-300 !text-gray-900 !my-3 !rounded !font-mono !leading-normal !overflow-hidden !relative">
+            <div class="!absolute !right-12 !top-2 !text-sm !text-gray-500 !dark:text-gray-400 !bg-gray-100 !dark:bg-gray-800 !z-10">java</div>
             
-            <li class="mb-2 grid grid-cols-[1em_1fr] gap-2 text-gray-700 leading-relaxed hover:text-gray-900">
-                <span class="text-gray-600 text-xl select-none">•</span>
-                <span>
-        <span class="text-base text-gray-700 leading-7 my-2">LoggingInterceptor</span>
-    </span>
-            </li>
-        </ul>
+        <button onclick="window.PageForge.CodeCopy.copy(this)" class="!absolute !right-2 !top-1 !p-1 !rounded !text-gray-400 hover:!text-blue-600 !dark:text-gray-500 hover:!text-blue-300 !transition-colors !duration-200 !z-10">
+            <svg class="copy-icon !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <svg class="check-icon !hidden !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        </button>
+    
+            <div class="!overflow-x-auto !flex">
+                
+                <div class="!flex-1">
+                    <pre class="!px-3 !py-2.5 !m-0"><code class="language-java"><span class="token annotation punctuation">@Post</span><span class="token punctuation">(</span><span class="token string">"/upload/multiple"</span><span class="token punctuation">)</span>
+<span class="token class-name">Object</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PartMap</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"files"</span><span class="token punctuation">)</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">File</span><span class="token punctuation">></span></span> files<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-4"></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">apply</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 方法用于上传图片文件，参数 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">image</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 表示要上传的图片文件，请求路径是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">/upload/multiple</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">。</span>
+    
+        <div class="space-y-4"></div>
+    
+        <div class="rounded-lg my-2 overflow-hidden border border-blue-200">
+        
+        <div class="flex items-start space-x-2 p-2 rounded-t-lg bg-blue-50">
+               <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+               <h3 class="text-sm font-medium text-gray-900 mb-2">提示</h3>
+           </div>
+                   
+            <div class="w-full px-5 py-3">
+                <div class="text-sm text-blue-700">
+                    
+        <span class="text-base text-gray-700 leading-7 my-2">文件上传请求会自动设置 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">Content-Type</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 为 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">multipart/form-data</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">，并将文件作为表单的一部分上传。</span>
+    
+                </div>
+            </div>
+        </div>
+    
+        <div class="space-y-4"></div>
+    
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white my-3 [&_span]:!font-inherit [&_span]:!text-inherit [&_code]:!text-inherit [&_span]:!text-xl [&_span]:sm:!text-2xl">
+            <div id="mime-lei-xing" class="inline-flex items-center">
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">mime</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 类型</span>
+    </div>
+        </div>
+    
+        <hr class="my-4 h-0.5 border-0 bg-gray-200 dark:bg-gray-700"/>
+    
+        <div class="space-y-4"></div>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">@Part</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 注解支持 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">mime</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 参数，用于指定上传文件的 MIME 类型，默认值为 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">application/octet-stream</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">。</span>
+    <div class="!block !w-full !bg-gray-100 !dark:bg-gray-800 !dark:text-gray-300 !text-gray-900 !my-3 !rounded !font-mono !leading-normal !overflow-hidden !relative">
+            <div class="!absolute !right-12 !top-2 !text-sm !text-gray-500 !dark:text-gray-400 !bg-gray-100 !dark:bg-gray-800 !z-10">java</div>
+            
+        <button onclick="window.PageForge.CodeCopy.copy(this)" class="!absolute !right-2 !top-1 !p-1 !rounded !text-gray-400 hover:!text-blue-600 !dark:text-gray-500 hover:!text-blue-300 !transition-colors !duration-200 !z-10">
+            <svg class="copy-icon !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <svg class="check-icon !hidden !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        </button>
+    
+            <div class="!overflow-x-auto !flex">
+                
+                <div class="!flex-1">
+                    <pre class="!px-3 !py-2.5 !m-0"><code class="language-java"><span class="token annotation punctuation">@Post</span><span class="token punctuation">(</span><span class="token string">"/upload/multiple"</span><span class="token punctuation">)</span>
+<span class="token class-name">Object</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PartMap</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"files"</span><span class="token punctuation">)</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">File</span><span class="token punctuation">></span></span> files<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-4"></div>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">该示例中的 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">apply</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 方法用于上传图片文件，参数 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">image</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 表示要上传的图片文件，请求路径是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">/upload</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">，文件的 MIME 类型是 </span>
+    
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">image/jpeg</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2">。</span>
     
         </div>
 
@@ -1147,13 +1315,39 @@ data-ad-slot="7720669116"></ins>
             
             
                 
-                    <div class="pl-4">
+                    <div class="pl-8">
                         <a href="#yong-fa"
                            onclick="event.preventDefault(); const target = document.getElementById('yong-fa'); const offset = 80; const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset; window.scrollTo({top: targetPosition, behavior: 'smooth'});"
                            class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
                            data-slug="yong-fa">
                             
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
+    
+                        </a>
+                    </div>
+                    
+                
+                    <div class="pl-8">
+                        <a href="#wen-jian-lei-xing"
+                           onclick="event.preventDefault(); const target = document.getElementById('wen-jian-lei-xing'); const offset = 80; const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset; window.scrollTo({top: targetPosition, behavior: 'smooth'});"
+                           class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                           data-slug="wen-jian-lei-xing">
+                            
+        <span class="text-base text-gray-700 leading-7 my-2">文件类型</span>
+    
+                        </a>
+                    </div>
+                    
+                
+                    <div class="pl-8">
+                        <a href="#mime-lei-xing"
+                           onclick="event.preventDefault(); const target = document.getElementById('mime-lei-xing'); const offset = 80; const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset; window.scrollTo({top: targetPosition, behavior: 'smooth'});"
+                           class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                           data-slug="mime-lei-xing">
+                            
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">mime</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 类型</span>
     
                         </a>
                     </div>
@@ -1190,7 +1384,7 @@ data-ad-slot="7720669116"></ins>
         
         
             
-                <div class="pl-4">
+                <div class="pl-8">
                     <a href="#yong-fa"
                        onclick="event.preventDefault();
                                const target = document.getElementById('yong-fa');
@@ -1202,6 +1396,42 @@ data-ad-slot="7720669116"></ins>
                        data-slug="yong-fa">
                         
         <span class="text-base text-gray-700 leading-7 my-2">用法</span>
+    
+                    </a>
+                </div>
+                
+            
+                <div class="pl-8">
+                    <a href="#wen-jian-lei-xing"
+                       onclick="event.preventDefault();
+                               const target = document.getElementById('wen-jian-lei-xing');
+                               const offset = 80;
+                               const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                               window.scrollTo({top: targetPosition, behavior: 'smooth'});
+                               document.getElementById('toc-mobile').classList.add('translate-y-full');"
+                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                       data-slug="wen-jian-lei-xing">
+                        
+        <span class="text-base text-gray-700 leading-7 my-2">文件类型</span>
+    
+                    </a>
+                </div>
+                
+            
+                <div class="pl-8">
+                    <a href="#mime-lei-xing"
+                       onclick="event.preventDefault();
+                               const target = document.getElementById('mime-lei-xing');
+                               const offset = 80;
+                               const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                               window.scrollTo({top: targetPosition, behavior: 'smooth'});
+                               document.getElementById('toc-mobile').classList.add('translate-y-full');"
+                       class="block px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-150 toc-link"
+                       data-slug="mime-lei-xing">
+                        
+        <code class="bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono mx-1 inline-block max-w-full break-all whitespace-pre-wrap overflow-wrap-anywhere">mime</code>
+    
+        <span class="text-base text-gray-700 leading-7 my-2"> 类型</span>
     
                     </a>
                 </div>

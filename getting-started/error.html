@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自定义错误处理器 - LightCall</title>
+    <!-- 基础 SEO meta 标签 -->
+<meta name="description" content="LightCall 的设计目标是提供一个简单、直观且功能强大的服务调用框架。通过声明式的方式，让开发者专注于业务逻辑而不是底层的 HTTP 调用细节。">
+<meta name="keywords" content="LightCall,服务调用框架,声明式服务调用,声明式HTTP调用,Client">
+<meta name="author" content="PageForge">
+
+    <title>自定义错误处理器 - LightCall</title>
     <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
 
     <!-- 基础样式文件 -->
@@ -54,6 +60,19 @@
 
     <!-- 统计代码 -->
     
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5403546756695673"
+crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-5403546756695673"
+data-ad-slot="7720669116"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
 
     <!-- Mermaid 图表 -->
     
@@ -65,11 +84,30 @@
         
 
 <header>
-    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b z-40">
+    <nav class="fixed top-0 w-full bg-white  border-b z-40">
+        <!-- Banner -->
+        
+    <div class="w-full bg-blue-50 " data-banner>
+        <div class="max-w-screen-xl px-6 py-3 mx-auto flex items-center justify-between">
+            <div class="text-blue-700 ">
+                💗 <a href="https://afdian.com/a/devlive-community" target="_blank">如果喜欢我们的软件，请点击这里支持我们</a> ❤️
+            </div>
+            <button class="text-blue-500 hover:text-blue-700 "
+                    onclick="this.closest('[data-banner]').remove()">
+                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center justify-between flex-1 lg:flex-none">
-                    <div class="flex items-center space-x-4 shrink-0">
+            <div class="flex items-center h-16">
+                <!-- 左侧Logo和导航 -->
+                <div class="flex items-center flex-1">
+                    <!-- Logo和标题 -->
+                    <div class="flex items-center space-x-4 shrink-0 lg:mr-8">
                         
                             <a href="/" class="flex items-center">
                                 <img src="..//assets/logo.svg"
@@ -77,66 +115,56 @@
                                      class="h-10 w-auto object-contain transition-transform hover:scale-105">
                             </a>
                         
-                        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+                        <a href="/"
+                           class="text-xl font-bold text-gray-900  transition-colors">
                             LightCall
                         </a>
                     </div>
 
-                    <!-- 移动端菜单按钮 -->
-                    <button type="button"
-                            class="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700"
-                            onclick="document.getElementById('mobile-menu').classList.toggle('hidden');
-                                     this.querySelector('svg:first-child').classList.toggle('hidden');
-                                     this.querySelector('svg:last-child').classList.toggle('hidden');">
-                        <!-- 菜单图标 -->
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                        <!-- 关闭图标 -->
-                        <svg class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+                    <!-- 桌面端导航 -->
+                    <ul class="hidden lg:flex items-center gap-6 md:gap-8 py-3">
+                        
+                            <li class="shrink-0">
+                                <a href="/getting-started/get-started.html"
+                                   class="inline-flex items-center rounded-lg justify-center px-4 py-3
+                                          text-sm font-medium leading-none 
+                                          text-blue-600  bg-blue-50/80  font-medium">
+                                    开始使用
+                                </a>
+                            </li>
+                        
+                            <li class="shrink-0">
+                                <a href="/usage/interceptor.html"
+                                   class="inline-flex items-center rounded-lg justify-center px-4 py-3
+                                          text-sm font-medium leading-none 
+                                          hover:text-gray-900  hover:bg-gray-50 ">
+                                    文档
+                                </a>
+                            </li>
+                        
+                            <li class="shrink-0">
+                                <a href="/release/2025.1.1.html"
+                                   class="inline-flex items-center rounded-lg justify-center px-4 py-3
+                                          text-sm font-medium leading-none 
+                                          hover:text-gray-900  hover:bg-gray-50 ">
+                                    发布日志
+                                </a>
+                            </li>
+                        
+                    </ul>
                 </div>
 
-                <!-- 桌面端导航 -->
-                <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
+                <!-- 右侧工具栏 -->
+                <div class="flex items-center gap-2 lg:gap-4">
+                    <!-- 桌面端主题切换按钮 -->
                     
-                        <li class="shrink-0">
-                            <a href="/getting-started/get-started.html"
-                               class="inline-flex items-center rounded-lg justify-center px-4 py-3
-                                      text-sm font-medium leading-none dark:text-white
-                                      text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium">
-                                开始使用
-                            </a>
-                        </li>
-                    
-                        <li class="shrink-0">
-                            <a href="/usage/interceptor.html"
-                               class="inline-flex items-center rounded-lg justify-center px-4 py-3
-                                      text-sm font-medium leading-none dark:text-white
-                                      hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40">
-                                文档
-                            </a>
-                        </li>
-                    
-                        <li class="shrink-0">
-                            <a href="/release/latest.html"
-                               class="inline-flex items-center rounded-lg justify-center px-4 py-3
-                                      text-sm font-medium leading-none dark:text-white
-                                      hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40">
-                                发布日志
-                            </a>
-                        </li>
-                    
-                </ul>
 
-                <!-- 语言切换器 -->
-                
-
-                <!-- 仓库链接 -->
-                <div class="hidden lg:block">
+                    <!-- 语言切换器 -->
                     
+
+                    <!-- 仓库链接 -->
+                    <div class="hidden lg:block">
+                        
     <div class="hidden lg:flex items-center space-x-4 text-sm" id="github-stats-desktop">
         <a href="https://github.com/devlive-community/lightcall"
            target="_blank"
@@ -228,29 +256,48 @@
         });
     </script>
 
+                    </div>
+
+                    <!-- 移动端控制区 -->
+                    <div class="flex items-center gap-2 lg:hidden">
+                        <!-- 深色模式切换按钮 - 只在启用时显示 -->
+                        
+
+                        <!-- 移动端菜单切换 -->
+                        <button type="button"
+                                data-menu-toggle
+                                class="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 ">
+                            <svg class="h-6 w-6 menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                            <svg class="h-6 w-6 close-icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- 移动端菜单 -->
         <div class="hidden lg:hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-2 border-t dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-2 border-t ">
                 
                     <a href="/getting-started/get-started.html"
                        class="block px-3 py-2 rounded-md text-base font-medium
-                              text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20">
+                              text-blue-600  bg-blue-50/80 ">
                         开始使用
                     </a>
                 
                     <a href="/usage/interceptor.html"
                        class="block px-3 py-2 rounded-md text-base font-medium
-                              text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                              text-gray-700  hover:text-gray-900  hover:bg-gray-50 ">
                         文档
                     </a>
                 
-                    <a href="/release/latest.html"
+                    <a href="/release/2025.1.1.html"
                        class="block px-3 py-2 rounded-md text-base font-medium
-                              text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                              text-gray-700  hover:text-gray-900  hover:bg-gray-50 ">
                         发布日志
                     </a>
                 
@@ -259,7 +306,7 @@
                 
 
                 <!-- 移动端的仓库链接 -->
-                <div class="px-3 py-2 border-t dark:border-gray-700">
+                <div class="px-3 py-2 border-t ">
                     
     <div class="hidden lg:flex items-center space-x-4 text-sm" id="github-stats-desktop">
         <a href="https://github.com/devlive-community/lightcall"
@@ -357,20 +404,6 @@
         </div>
     </nav>
 </header>
-
-<script>
-    // 点击外部区域关闭移动端菜单
-    document.addEventListener('click', function (event) {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuButton = document.querySelector('button[onclick*="mobile-menu"]');
-
-        if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-            menuButton.querySelector('svg:first-child').classList.remove('hidden');
-            menuButton.querySelector('svg:last-child').classList.add('hidden');
-        }
-    });
-</script>
     
 
     <!-- 移动端菜单按钮 -->
@@ -409,86 +442,138 @@
 
 
 
+
+
     <div class="text-[0.9375rem] text-gray-600 dark:text-gray-300 overflow-y-auto max-h-[calc(100vh-4rem)] pageforge-scrollbar
                 sm:max-h-screen md:h-auto lg:max-h-[calc(100vh-2rem)]">
-        <div class="mb-6">
-            <ul class="space-y-1.5">
+        <div class="mb-6 overflow-x-auto min-w-0">
+            <div class="min-w-fit">
                 
-                    <li class="relative">
-                        <a href="/getting-started/get-started.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">开始使用</span>
-
-                                
-                            </div>
-                        </a>
-
+    <ul class="space-y-1.5">
+        
+            <li class="relative">
+                
+                    <a href="/getting-started/get-started.html"
+                       class="group block">
                         
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/getting-started/interceptor.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
+                        <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                               rounded-md transition-all duration-200 ease-in-out">
 
+                            
+
+                            <span class="flex flex-grow items-center space-x-4 text-sm sm:text-base whitespace-nowrap">
+                                <span>开始使用</span>
                                 
 
-                                <span class="flex-grow text-sm sm:text-base">自定义拦截器</span>
 
-                                
-                            </div>
-                        </a>
+                            </span>
 
+                            
+                        </div>
                         
-                    </li>
+                    </a>
                 
-                    <li class="relative">
-                        <a href="/getting-started/error.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
-                                       rounded-md transition-all duration-200 ease-in-out">
-
-                                
-
-                                <span class="flex-grow text-sm sm:text-base">自定义错误处理器</span>
-
-                                
-                            </div>
-                        </a>
-
+            </li>
+        
+            <li class="relative">
+                
+                    <a href="/getting-started/interceptor.html"
+                       class="group block">
                         
-                    </li>
-                
-                    <li class="relative">
-                        <a href="/getting-started/processor.html"
-                           class="group block">
-                            <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
-                                        hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
-                                       rounded-md transition-all duration-200 ease-in-out">
+                        <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                               rounded-md transition-all duration-200 ease-in-out">
 
+                            
+
+                            <span class="flex flex-grow items-center space-x-4 text-sm sm:text-base whitespace-nowrap">
+                                <span>自定义拦截器</span>
                                 
 
-                                <span class="flex-grow text-sm sm:text-base">自定义请求处理器</span>
 
-                                
-                            </div>
-                        </a>
+                            </span>
 
+                            
+                        </div>
                         
-                    </li>
+                    </a>
                 
-            </ul>
+            </li>
+        
+            <li class="relative">
+                
+                    <a href="/getting-started/error.html"
+                       class="group block">
+                        
+                        <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/20 font-medium
+                               rounded-md transition-all duration-200 ease-in-out">
+
+                            
+
+                            <span class="flex flex-grow items-center space-x-4 text-sm sm:text-base whitespace-nowrap">
+                                <span>自定义错误处理器</span>
+                                
+
+
+                            </span>
+
+                            
+                        </div>
+                        
+                    </a>
+                
+            </li>
+        
+            <li class="relative">
+                
+                    <a href="/getting-started/processor.html"
+                       class="group block">
+                        
+                        <div class="relative flex items-center px-2 sm:px-3 md:px-4 py-1.5 sm:py-2
+                                hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/40
+                               rounded-md transition-all duration-200 ease-in-out">
+
+                            
+
+                            <span class="flex flex-grow items-center space-x-4 text-sm sm:text-base whitespace-nowrap">
+                                <span>自定义请求处理器</span>
+                                
+
+
+                            </span>
+
+                            
+                        </div>
+                        
+                    </a>
+                
+            </li>
+        
+    </ul>
+
+            </div>
         </div>
     </div>
+
+    <script>
+        function toggleSubmenu(button) {
+            const submenu = button.nextElementSibling;
+            const arrow = button.querySelector('svg');
+
+            // 切换子菜单的类
+            if (submenu.classList.contains('max-h-0')) {
+                submenu.classList.remove('max-h-0', 'opacity-0');
+                submenu.classList.add('max-h-96', 'opacity-100');
+                arrow.classList.add('rotate-90');
+            } else {
+                submenu.classList.add('max-h-0', 'opacity-0');
+                submenu.classList.remove('max-h-96', 'opacity-100');
+                arrow.classList.remove('rotate-90');
+            }
+        }
+    </script>
 
                     </div>
                 </nav>
@@ -512,33 +597,39 @@
         </h1>
 
         <div class="flex items-center gap-4">
+            <!-- 字体大小控制按钮 -->
+            
+
+            <!-- 分享按钮 -->
+            
+
             <!-- 编辑源码 -->
             
-                <a href="https://github.com/devlive-community/lightcall/edit/dev-2025.1.1/docs/content/getting-started/error.md"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="ml-4 text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-edit w-4 h-4">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                </a>
-            
+    <a href="https://github.com/devlive-community/lightcall/edit/dev-2025.1.1/docs/content/getting-started/error.md"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-edit w-4 h-4">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+    </a>
+
 
             <!-- 查看源码 -->
             
-                <a href="https://github.com/devlive-community/lightcall/blob/dev-2025.1.1/docs/content/getting-started/error.md"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code w-4 h-4">
-                        <polyline points="16 18 22 12 16 6"/>
-                        <polyline points="8 6 2 12 8 18"/>
-                    </svg>
-                </a>
-            
+    <a href="https://github.com/devlive-community/lightcall/blob/dev-2025.1.1/docs/content/getting-started/error.md"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="text-gray-400 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code w-4 h-4">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+        </svg>
+    </a>
+
         </div>
     </div>
     
@@ -546,7 +637,7 @@
         </div>
 
         <!-- 主要内容部分 -->
-        <div class="prose prose-gray dark:prose-invert max-w-none">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-base">
             
         <div class="space-y-4"></div>
     
@@ -581,12 +672,10 @@
                 </div>
             </div>
         </div>
-    
-        <div class="space-y-4"></div>
     <div class="!block !w-full !bg-gray-100 !dark:bg-gray-800 !dark:text-gray-300 !text-gray-900 !my-3 !rounded !font-mono !leading-normal !overflow-hidden !relative">
             <div class="!absolute !right-12 !top-2 !text-sm !text-gray-500 !dark:text-gray-400 !bg-gray-100 !dark:bg-gray-800 !z-10">java</div>
             
-        <button onclick="window.PageForge.CodeCopy.copy(this)" class="!absolute !right-2 !top-1 !p-1 !rounded !bg-gray-100 !dark:bg-gray-400 !text-gray-600 !dark:text-gray-300 !hover:bg-gray-300 !dark:hover:bg-gray-600 !transition-colors !duration-200 !z-10">
+        <button onclick="window.PageForge.CodeCopy.copy(this)" class="!absolute !right-2 !top-1 !p-1 !rounded !text-gray-400 hover:!text-blue-600 !dark:text-gray-500 hover:!text-blue-300 !transition-colors !duration-200 !z-10">
             <svg class="copy-icon !w-5 !h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
@@ -635,7 +724,7 @@
 
         <!-- Git 信息部分 -->
         
-            <div class="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
+            <div class="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700 not-prose">
     <!-- 时间和提交信息 -->
     <div class="space-x-6 text-sm text-gray-500 dark:text-gray-400 grid grid-cols-2 md:grid-cols-4 mb-4 gap-y-3 md:gap-y-0">
         <!-- 首次提交时间 -->
@@ -647,7 +736,7 @@
                 <line x1="3" y1="12" y2="12" x2="9"/>
                 <line x1="15" y1="12" y2="12" x2="21"/>
             </svg>
-            <span>提交于 2025年2月4日 01:57</span>
+            <span>提交于 2025年2月6日 06:33</span>
         </div>
 
         <!-- 最后修改时间 -->
@@ -659,7 +748,7 @@
                 <path d="M3 3v5h5"/>
                 <path d="M12 7v5l4 2"/>
             </svg>
-            <span>修改于 2025年2月4日 01:57</span>
+            <span>修改于 2025年2月6日 06:33</span>
         </div>
 
         <!-- Hash 链接 -->
@@ -672,11 +761,11 @@
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                 </svg>
-                <a href="https://github.com/devlive-community/lightcall/commit/2fb9480d94c66afd6560f9131797a25be45e3f24"
+                <a href="https://github.com/devlive-community/lightcall/commit/e684ac7669951315ef5a5528105bb9285593045a"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="hover:text-blue-600 dark:hover:text-blue-400">
-                    首次提交 (2fb9480d)
+                    首次提交 (e684ac76)
                 </a>
             </div>
 
@@ -688,11 +777,11 @@
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                 </svg>
-                <a href="https://github.com/devlive-community/lightcall/commit/2fb9480d94c66afd6560f9131797a25be45e3f24"
+                <a href="https://github.com/devlive-community/lightcall/commit/e684ac7669951315ef5a5528105bb9285593045a"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="hover:text-blue-600 dark:hover:text-blue-400">
-                    末次提交 (2fb9480d)
+                    末次提交 (e684ac76)
                 </a>
             </div>
         
@@ -702,7 +791,7 @@
 
         <!-- 贡献者信息 -->
         
-            <div class="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
+            <div class="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700 not-prose">
     <div class="flex items-center gap-2 mb-3 text-sm text-gray-600 dark:text-gray-300">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -720,10 +809,25 @@
                target="_blank"
                rel="noopener noreferrer"
                class="flex items-center gap-2 group">
-                <img src="https://github.com/qianmoQ.png?size=40"
-                     alt="qianmoQ"
-                     class="w-8 h-8 rounded-full"
-                     loading="lazy">
+                <div class="relative w-8 h-8">
+                    <!-- 骨架屏加载效果 -->
+                    <div class="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+
+                    <!-- 头像图片 -->
+                    <img src="https://github.com/qianmoQ.png?size=40"
+                         alt="qianmoQ"
+                         class="relative w-8 h-8 rounded-full"
+                         loading="lazy"
+                         onload="this.style.opacity='1'; this.previousElementSibling.style.display='none'"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'; this.previousElementSibling.style.display='none'"
+                         style="opacity: 0; transition: opacity 0.2s;">
+
+                    <!-- 首字母占位符 -->
+                    <div class="hidden w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300
+                                font-medium text-sm flex items-center justify-center uppercase">
+                        q
+                    </div>
+                </div>
                 <div class="text-sm">
                     <div class="text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         qianmoQ
@@ -736,6 +840,9 @@
         
     </div>
 </div>
+        
+
+        <!-- 评论部分 -->
         
     </div>
 </div>
@@ -802,7 +909,8 @@
                                  alt="LightCall"
                                  class="h-12">
                         </a>
-                        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+                        <a href="/"
+                           class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
                             LightCall
                         </a>
                     </div>
@@ -828,7 +936,7 @@
                                         <a href="https://github.com/devlive-community/datacap"
                                            class="text-sm hover:text-gray-900 dark:hover:text-white hover:underline"
                                            target="_blank">
-                                            开源数据中台
+                                            开源数据中台 DataCap
                                         </a>
                                     </li>
                                 
@@ -836,7 +944,7 @@
                                         <a href="https://github.com/devlive-community/view-shadcn-ui"
                                            class="text-sm hover:text-gray-900 dark:hover:text-white hover:underline"
                                            target="_blank">
-                                            开源 UI 框架
+                                            前端框架 View Shadcn UI
                                         </a>
                                     </li>
                                 
@@ -844,7 +952,7 @@
                                         <a href="https://github.com/devlive-community/pageforge"
                                            class="text-sm hover:text-gray-900 dark:hover:text-white hover:underline"
                                            target="_blank">
-                                            开源网站构建工具
+                                            网站构建 PageForge
                                         </a>
                                     </li>
                                 
@@ -861,6 +969,10 @@
         <div class="flex flex-col items-center sm:flex-row sm:items-center justify-between gap-4">
             <span class="text-sm text-gray-500 dark:text-gray-400">
                 © 2024 PageForge All Rights Reserved. 使用 ❤️ <a href="https://pageforge.devlive.org" class="hover:text-blue-600" target="_blank">PageForge</a> 构建
+
+                
+                    <a href="https://lightcall.devlive.org/sitemap.xml" target="_blank" class="ml-3 dark:hover:text-white hover:underline hover:text-blue-600">站点地图</a>
+                
             </span>
 
             
